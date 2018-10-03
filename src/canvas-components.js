@@ -1,6 +1,6 @@
 function ComponentCanvas(canvasselector)
 {
-	if(CanvasComponentsUtil.IsUndefinedNullOrEmpty(canvasselector))
+	if(CCUtil.IsUndefinedNullOrEmpty(canvasselector))
 	{
 		console.error('ComponentCanvas: Invalid selector ' + canvasselector);
 		return;
@@ -20,50 +20,60 @@ function ComponentCanvas(canvasselector)
 	this.CanvasComponentCollection = new CanvasComponentCollection();
 }
 
-ComponentCanvas.prototype.CreateComponent = function(component)
+ComponentCanvas.prototype.CreateComponent = function(componentType, options)
 {
-	switch(component)
+	var component = null;
+
+	switch(componentType)
 	{
 		case CanvasComponent.BUTTON:
-
+			component = new CCButton(options);
 			break;
 
 		case CanvasComponent.CHECKBOX:
-
+			component = new CCCheckbox(options);
 			break;
 
 		case CanvasComponent.PANEL:
-
+			component = new CCPanel(options);
 			break;
 
 		case CanvasComponent.RADIO:
-
+			component = new CCRadioButton(options);
 			break;
 
 		case CanvasComponent.TEXT_INPUT:
-
+			component = new CCTextInput(options);
 			break;
 
 		case CanvasComponent.LABEL:
-
+			component = new CCLabel(options);
 			break;
 
 		default:
+			CCUtil.Log('CreateComponent: Component creation failed');
 			break;
 	}
+
+	this.AddComponent(component);
 }
 
-ComponentCanvas.prototype.AddComponent = function()
+ComponentCanvas.prototype.AddComponent = function(component)
 {
 	
 }
 
-ComponentCanvas.prototype.RemoveComponent = function()
+ComponentCanvas.prototype.RemoveComponent = function(component)
 {
 	
 }
 
-ComponentCanvas.prototype.GetComponent = function()
+ComponentCanvas.prototype.GetComponent = function(component)
+{
+	
+}
+
+ComponentCanvas.prototype.GetComponentById = function(id)
 {
 	
 }

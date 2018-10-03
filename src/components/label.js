@@ -1,4 +1,4 @@
-function CCLabel()
+function CCLabel(options)
 {
-	
+	Component.call(this, options);
 }
