@@ -1,27 +1,34 @@
-function CanvasComponentCollection()
+class CanvasComponentCollection
 {
-	this.collection = {};
-}
-
-CanvasComponentCollection.prototype.AddComponent = function(component)
-{
-	if(!CCUtil.IsUndefinedNullOrEmpty(component))
+	constructor()
 	{
+		this.collection = {};
+	}
+	
+	AddComponent(component)
+	{
+		if(CCUtil.IsUndefinedNullOrEmpty(component) || !CCUtil.IsComponent(component))
+			return false;
+
 		if(typeof this.collection[component.id] === 'undefined')
 		{
 			this.collection[component.id] = component;
+			return true;
 		}
 		else
 		{
 			CCUtil.Log(`Add: ComponentCollection already has a component with id '${component.id}'`);
 		}
-	}
-}
 
-CanvasComponentCollection.prototype.RemoveComponent = function(component)
-{
-	if(!CCUtil.IsUndefinedNullOrEmpty(component))
+
+		return false;
+	}
+
+	RemoveComponent(component)
 	{
+		if(CCUtil.IsUndefinedNullOrEmpty(component) || !CCUtil.IsComponent(component))
+			return false;
+
 		if(typeof this.collection[component.id] !== 'undefined')
 		{
 			this.collection[component.id].Destroy();
@@ -33,15 +40,15 @@ CanvasComponentCollection.prototype.RemoveComponent = function(component)
 		{
 			CCUtil.Log(`Remove: Could not find a component with id '${component.id}'`);
 		}
+
+		return false;
 	}
 
-	return false;
-}
-
-CanvasComponentCollection.prototype.FindComponent = function(component)
-{
-	if(!CCUtil.IsUndefinedNullOrEmpty(component))
+	FindComponent(component)
 	{
+		if(CCUtil.IsUndefinedNullOrEmpty(component) || !CCUtil.IsComponent(component))
+			return false;
+		
 		if(typeof this.collection[component.id] !== 'undefined')
 		{
 			return this.collection[component.id];
@@ -50,24 +57,25 @@ CanvasComponentCollection.prototype.FindComponent = function(component)
 		{
 			CCUtil.Log(`FindComponent: Could not find a component with id '${component.id}'`);
 		}
+
+		return null;
 	}
 
-	return null;
-}
-
-CanvasComponentCollection.prototype.FindComponentById = function(id)
-{
-	if(!CCUtil.IsUndefinedNullOrEmpty(id))
+	FindComponentById(id)
 	{
-		if(typeof this.collection[id] !== 'undefined')
+		if(!CCUtil.IsUndefinedNullOrEmpty(id))
 		{
-			return this.collection[id];
+			if(typeof this.collection[id] !== 'undefined')
+			{
+				return this.collection[id];
+			}
+			else
+			{
+				CCUtil.Log(`FindComponentById: Could not find a component with id '${id}'`);
+			}
 		}
-		else
-		{
-			CCUtil.Log(`FindComponentById: Could not find a component with id '${id}'`);
-		}
-	}
 
-	return null;
+		return null;
+	}
 }
+

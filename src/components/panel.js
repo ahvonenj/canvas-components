@@ -1,4 +1,7 @@
-function CCPanel(options)
+class CCPanel extends Component
 {
-	Component.call(this, options);
+	constructor(options)
+	{
+		super(options);
+	}
 }

@@ -1,95 +1,98 @@
-function ComponentCanvas(canvasselector)
+class ComponentCanvas
 {
-	if(CCUtil.IsUndefinedNullOrEmpty(canvasselector))
+	constructor(canvasselector)
 	{
-		console.error('ComponentCanvas: Invalid selector ' + canvasselector);
-		return;
+		if(CCUtil.IsUndefinedNullOrEmpty(canvasselector))
+		{
+			console.error('ComponentCanvas: Invalid selector ' + canvasselector);
+			return;
+		}
+
+		this.canvasselector = canvasselector;
+
+		if(document.querySelector(this.canvasselector) === null)
+		{
+			console.error('ComponentCanvas: Could not get canvas ' + this.canvasselector);
+			return;
+		}
+
+		this.canvas = document.querySelector(this.canvasselector);
+		this.ctx = this.canvas.getContext('2d');
+
+		this.CanvasComponentCollection = new CanvasComponentCollection();
 	}
 
-	this.canvasselector = canvasselector;
-
-	if(document.querySelector(this.canvasselector) === null)
+	CreateComponent(componentType, options)
 	{
-		console.error('ComponentCanvas: Could not get canvas ' + this.canvasselector);
-		return;
+		var component = null;
+
+		switch(componentType)
+		{
+			case CanvasComponent.BUTTON:
+				component = new CCButton(options);
+				break;
+
+			case CanvasComponent.CHECKBOX:
+				component = new CCCheckbox(options);
+				break;
+
+			case CanvasComponent.PANEL:
+				component = new CCPanel(options);
+				break;
+
+			case CanvasComponent.RADIO:
+				component = new CCRadioButton(options);
+				break;
+
+			case CanvasComponent.TEXT_INPUT:
+				component = new CCTextInput(options);
+				break;
+
+			case CanvasComponent.LABEL:
+				component = new CCLabel(options);
+				break;
+
+			default:
+				CCUtil.Log('CreateComponent: Component creation failed');
+				break;
+		}
+
+		console.log(component)
+		console.log(new CCButton(options))
+
+		return this.AddComponent(component);
 	}
 
-	this.canvas = document.querySelector(this.canvasselector);
-	this.ctx = this.canvas.getContext('2d');
-
-	this.CanvasComponentCollection = new CanvasComponentCollection();
-}
-
-ComponentCanvas.prototype.CreateComponent = function(componentType, options)
-{
-	var component = null;
-
-	switch(componentType)
+	AddComponent(component)
 	{
-		case CanvasComponent.BUTTON:
-			component = new CCButton(options);
-			break;
-
-		case CanvasComponent.CHECKBOX:
-			component = new CCCheckbox(options);
-			break;
-
-		case CanvasComponent.PANEL:
-			component = new CCPanel(options);
-			break;
-
-		case CanvasComponent.RADIO:
-			component = new CCRadioButton(options);
-			break;
-
-		case CanvasComponent.TEXT_INPUT:
-			component = new CCTextInput(options);
-			break;
-
-		case CanvasComponent.LABEL:
-			component = new CCLabel(options);
-			break;
-
-		default:
-			CCUtil.Log('CreateComponent: Component creation failed');
-			break;
+		if(this.CanvasComponentCollection.AddComponent(component))
+			return true;
+		else
+			return false;
 	}
 
-	return this.AddComponent(component);
-}
-
-ComponentCanvas.prototype.AddComponent = function(component)
-{
-	if(!CCUtil.IsUndefinedNullOrEmpty(component))
+	RemoveComponent(component)
 	{
-		this.CanvasComponentCollection.AddComponent(component);
-		return component;
+		return this.CanvasComponentCollection.RemoveComponent(component);
 	}
 
-	return null;
-}
+	FindComponent(component)
+	{
+		return this.CanvasComponentCollection.FindComponent(component);
+	}
 
-ComponentCanvas.prototype.RemoveComponent = function(component)
-{
-	return this.CanvasComponentCollection.RemoveComponent(component);
-}
+	FindComponentById(id)
+	{
+		return this.CanvasComponentCollection.FindComponentById(component);
+	}
 
-ComponentCanvas.prototype.FindComponent = function(component)
-{
-	return this.CanvasComponentCollection.FindComponent(component);
-}
+	Draw(dt)
+	{
+		
+	}
 
-ComponentCanvas.prototype.FindComponentById = function(id)
-{
-	return this.CanvasComponentCollection.FindComponentById(component);
-}
-
-ComponentCanvas.prototype.Draw = function(dt)
-{
-	
-}
-
-ComponentCanvas.prototype.Update = function(dt)
-{
-	
+	Update(dt)
+	{
+		
+	}
 }

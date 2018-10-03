@@ -1,4 +1,7 @@
-function CCLabel(options)
+class CCLabel extends Component
 {
-	Component.call(this, options);
+	constructor(options)
+	{
+		super(options);
+	}
 }

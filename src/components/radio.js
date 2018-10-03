@@ -1,4 +1,7 @@
-function CCRadioButton(options)
+class CCRadioButton extends Component
 {
-	Component.call(this, options);
+	constructor(options)
+	{
+		super(options);
+	}
 }

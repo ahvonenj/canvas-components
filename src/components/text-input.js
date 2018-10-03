@@ -1,4 +1,7 @@
-function CCTextInput(options)
+class CCTextInput extends Component
 {
-	Component.call(this, options);
+	constructor(options)
+	{
+		super(options);
+	}
 }

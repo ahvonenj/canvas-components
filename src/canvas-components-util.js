@@ -15,6 +15,11 @@ CanvasComponentsUtil.IsUndefinedNullOrEmpty = function(variable)
 	return false;
 }
 
+CanvasComponentsUtil.IsComponent = function(possiblyComponent)
+{
+	return Object.getPrototypeOf(possiblyComponent.constructor).name === 'Component';
+}
+
 CanvasComponentsUtil.UUID = function()
 {
 	function s4() 
@@ -27,7 +32,7 @@ CanvasComponentsUtil.UUID = function()
 	return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 }
 
-CanvasComponentsUtil.log = function(str)
+CanvasComponentsUtil.Log = function(str)
 {
 	if(CanvasComponentsUtil.debug)
 		console.log(str);

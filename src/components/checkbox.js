@@ -1,4 +1,7 @@
-function CCCheckbox(options)
+class CCCheckbox extends Component
 {
-	Component.call(this, options);
+	constructor(options)
+	{
+		super(options);
+	}
 }

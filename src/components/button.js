@@ -1,4 +1,7 @@
-function CCButton(options)
+class CCButton extends Component
 {
-	Component.call(this, options);
+	constructor(options)
+	{
+		super(options);
+	}
 }
