@@ -26,12 +26,16 @@ CanvasComponentCollection.prototype.RemoveComponent = function(component)
 		{
 			this.collection[component.id].Destroy();
 			delete this.collection[component.id];
+
+			return true;
 		}
 		else
 		{
 			CCUtil.Log(`Remove: Could not find a component with id '${component.id}'`);
 		}
 	}
+
+	return false;
 }
 
 CanvasComponentCollection.prototype.FindComponent = function(component)
@@ -47,6 +51,8 @@ CanvasComponentCollection.prototype.FindComponent = function(component)
 			CCUtil.Log(`FindComponent: Could not find a component with id '${component.id}'`);
 		}
 	}
+
+	return null;
 }
 
 CanvasComponentCollection.prototype.FindComponentById = function(id)
@@ -59,7 +65,9 @@ CanvasComponentCollection.prototype.FindComponentById = function(id)
 		}
 		else
 		{
-			CCUtil.Log(`FindComponenById: Could not find a component with id '${id}'`);
+			CCUtil.Log(`FindComponentById: Could not find a component with id '${id}'`);
 		}
 	}
+
+	return null;
 }

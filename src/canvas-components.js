@@ -55,27 +55,33 @@ ComponentCanvas.prototype.CreateComponent = function(componentType, options)
 			break;
 	}
 
-	this.AddComponent(component);
+	return this.AddComponent(component);
 }
 
 ComponentCanvas.prototype.AddComponent = function(component)
 {
-	
+	if(!CCUtil.IsUndefinedNullOrEmpty(component))
+	{
+		this.CanvasComponentCollection.AddComponent(component);
+		return component;
+	}
+
+	return null;
 }
 
 ComponentCanvas.prototype.RemoveComponent = function(component)
 {
-	
+	return this.CanvasComponentCollection.RemoveComponent(component);
 }
 
-ComponentCanvas.prototype.GetComponent = function(component)
+ComponentCanvas.prototype.FindComponent = function(component)
 {
-	
+	return this.CanvasComponentCollection.FindComponent(component);
 }
 
-ComponentCanvas.prototype.GetComponentById = function(id)
+ComponentCanvas.prototype.FindComponentById = function(id)
 {
-	
+	return this.CanvasComponentCollection.FindComponentById(component);
 }
 
 ComponentCanvas.prototype.Draw = function(dt)

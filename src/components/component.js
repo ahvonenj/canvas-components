@@ -1,4 +1,4 @@
-function CanvasComponent(options)
+function Component(options)
 {
 	this.id = CCUtil.UUID();
 
