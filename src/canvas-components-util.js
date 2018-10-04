@@ -1,3 +1,4 @@
+// "Static" Canvas Component Utility Class
 var CanvasComponentsUtil = 
 { 
 	debug: true
@@ -20,6 +21,7 @@ CanvasComponentsUtil.IsComponent = function(possiblyComponent)
 	return Object.getPrototypeOf(possiblyComponent.constructor).name === 'Component';
 }
 
+// Component unique id generator method
 CanvasComponentsUtil.UUID = function()
 {
 	function s4() 

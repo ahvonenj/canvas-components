@@ -1,3 +1,4 @@
+// Main class for Canvas Components
 class ComponentCanvas
 {
 	constructor(canvasselector)
@@ -19,9 +20,11 @@ class ComponentCanvas
 		this.canvas = document.querySelector(this.canvasselector);
 		this.ctx = this.canvas.getContext('2d');
 
+		// Instantiate CanvasComponentCollection to hold the components in
 		this.CanvasComponentCollection = new CanvasComponentCollection();
 	}
 
+	// Main component creation method
 	CreateComponent(componentType, options)
 	{
 		var component = null;
@@ -65,9 +68,11 @@ class ComponentCanvas
 				break;
 		}
 
+		// Returns true or false
 		return this.AddComponent(component);
 	}
 
+	// Higher level method to add component into the CanvasComponentCollection
 	AddComponent(component)
 	{
 		if(this.CanvasComponentCollection.AddComponent(component))
@@ -76,21 +81,25 @@ class ComponentCanvas
 			return false;
 	}
 
+	// Higher level method to remove component from the CanvasComponentCollection
 	RemoveComponent(component)
 	{
 		return this.CanvasComponentCollection.RemoveComponent(component);
 	}
 
+	// Higher level method to find a component from the CanvasComponentCollection
 	FindComponent(component)
 	{
 		return this.CanvasComponentCollection.FindComponent(component);
 	}
 
+	// Higher level method to find a component by unique id from the CanvasComponentCollection
 	FindComponentById(id)
 	{
 		return this.CanvasComponentCollection.FindComponentById(component);
 	}
 
+	// Main component draw method and loop
 	Draw(dt)
 	{
 		for(var component in this.CanvasComponentCollection.collection)
@@ -102,6 +111,7 @@ class ComponentCanvas
 		}
 	}
 
+	// Main component update method and loop
 	Update(dt)
 	{
 		

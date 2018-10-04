@@ -1,3 +1,4 @@
+// Collection class for Canvas Components
 class CanvasComponentCollection
 {
 	constructor()
@@ -5,6 +6,7 @@ class CanvasComponentCollection
 		this.collection = {};
 	}
 	
+	// Add component to the collection
 	AddComponent(component)
 	{
 		if(CCUtil.IsUndefinedNullOrEmpty(component) || !CCUtil.IsComponent(component))
@@ -24,6 +26,7 @@ class CanvasComponentCollection
 		return false;
 	}
 
+	// Remove component from the collection
 	RemoveComponent(component)
 	{
 		if(CCUtil.IsUndefinedNullOrEmpty(component) || !CCUtil.IsComponent(component))
@@ -44,6 +47,7 @@ class CanvasComponentCollection
 		return false;
 	}
 
+	// Find component in the collection by component
 	FindComponent(component)
 	{
 		if(CCUtil.IsUndefinedNullOrEmpty(component) || !CCUtil.IsComponent(component))
@@ -61,6 +65,7 @@ class CanvasComponentCollection
 		return null;
 	}
 
+	// Find component in the collection by a component unique id
 	FindComponentById(id)
 	{
 		if(!CCUtil.IsUndefinedNullOrEmpty(id))
