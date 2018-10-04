@@ -24,6 +24,9 @@
 		<canvas id="test-canvas"></canvas>
 
 		<script>
+			document.querySelector('#test-canvas').width = document.body.clientWidth;
+			document.querySelector('#test-canvas').height = document.body.clientHeight;
+
 			var componentCanvas = new ComponentCanvas('#test-canvas');
 		</script>
 	</body>
