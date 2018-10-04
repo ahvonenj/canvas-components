@@ -1,7 +1,7 @@
 class CCCheckbox extends Component
 {
-	constructor(options)
+	constructor(options, ctx)
 	{
-		super(options);
+		super(options, ctx);
 	}
 }

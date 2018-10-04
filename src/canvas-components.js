@@ -29,36 +29,33 @@ class ComponentCanvas
 		switch(componentType)
 		{
 			case CanvasComponent.BUTTON:
-				component = new CCButton(options);
+				component = new CCButton(options, this.ctx);
 				break;
 
 			case CanvasComponent.CHECKBOX:
-				component = new CCCheckbox(options);
+				component = new CCCheckbox(options, this.ctx);
 				break;
 
 			case CanvasComponent.PANEL:
-				component = new CCPanel(options);
+				component = new CCPanel(options, this.ctx);
 				break;
 
 			case CanvasComponent.RADIO:
-				component = new CCRadioButton(options);
+				component = new CCRadioButton(options, this.ctx);
 				break;
 
 			case CanvasComponent.TEXT_INPUT:
-				component = new CCTextInput(options);
+				component = new CCTextInput(options, this.ctx);
 				break;
 
 			case CanvasComponent.LABEL:
-				component = new CCLabel(options);
+				component = new CCLabel(options, this.ctx);
 				break;
 
 			default:
 				CCUtil.Log('CreateComponent: Component creation failed');
 				break;
 		}
-
-		console.log(component)
-		console.log(new CCButton(options))
 
 		return this.AddComponent(component);
 	}
