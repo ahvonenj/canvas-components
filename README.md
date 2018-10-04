@@ -25,3 +25,4 @@ Aiming for easy extendability and ease-of-use.
 - [ ] Update components states
 - [ ] Get and set values of inputs
 - [ ] Interaction with buttons, checkboxes, text inputs, ...
+- [ ] Component relative positioning (e.g. when component is inside a panel)
