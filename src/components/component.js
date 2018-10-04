@@ -1,16 +1,19 @@
-function Component(options)
+class Component
 {
-	this.id = CCUtil.UUID();
-
-	if(CCUtil.IsUndefinedNullOrEmpty(options))
+	constructor(options)
 	{
-		this.options =
+		this.id = CCUtil.UUID();
+
+		if(CCUtil.IsUndefinedNullOrEmpty(options))
 		{
+			this.options =
+			{
 
-		};
-	}
-	else
-	{
-		this.options = options;
+			};
+		}
+		else
+		{
+			this.options = options;
+		}
 	}
 }
