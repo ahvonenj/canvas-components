@@ -15,12 +15,12 @@ Aiming for easy extendability and ease-of-use.
 
 ## Todo
 
-- [ ] Component superclass
-- [ ] Component collection
-- [ ] Components inherited from superclass
-- [ ] Component enumeration
-- [ ] Component default options
-- [ ] Component unique indentifiers
+- [x] Component superclass
+- [x] Component collection
+- [x] Components inherited from superclass
+- [x] Component enumeration
+- [x] Component default options
+- [x] Component unique indentifiers
 - [ ] Draw components on canvas
 - [ ] Update components states
 - [ ] Get and set values of inputs
