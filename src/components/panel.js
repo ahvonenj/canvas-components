@@ -2,6 +2,6 @@ class CCPanel extends Component
 {
 	constructor(options, ctx)
 	{
-		super(options, ctx);
+		super(options, ctx, CanvasComponent.PANEL);
 	}
 }

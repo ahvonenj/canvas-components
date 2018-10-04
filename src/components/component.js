@@ -1,6 +1,6 @@
 class Component
 {
-	constructor(options, ctx)
+	constructor(options, ctx, componentType)
 	{
 		this.id = CCUtil.UUID();
 
@@ -8,6 +8,7 @@ class Component
 			console.error('Component: Canvas context is undefined or null!');
 
 		this.ctx = ctx;
+		this.ComponentType = componentType || null;
 
 		if(CCUtil.IsUndefinedNullOrEmpty(options))
 		{
@@ -29,6 +30,6 @@ class Component
 
 	Draw(dt)
 	{
-		
+
 	}
 }

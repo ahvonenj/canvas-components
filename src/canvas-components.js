@@ -85,7 +85,13 @@ class ComponentCanvas
 
 	Draw(dt)
 	{
-		
+		for(var component in this.CanvasComponentCollection.collection)
+		{
+			if(!this.CanvasComponentCollection.collection.hasOwnProperty(component))
+				continue;
+
+			this.CanvasComponentCollection.collection[component].Draw(dt);
+		}
 	}
 
 	Update(dt)
