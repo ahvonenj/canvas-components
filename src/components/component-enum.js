@@ -5,5 +5,8 @@ var CanvasComponent =
 	PANEL: 3,
 	RADIO: 4,
 	TEXT_INPUT: 5,
-	LABEL: 6
+	LABEL: 6,
+	
+	RANGE_SLIDER: 7,
+	PROGRESS_BAR: 8
 }

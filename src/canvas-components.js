@@ -52,6 +52,14 @@ class ComponentCanvas
 				component = new CCLabel(options, this.ctx);
 				break;
 
+			case CanvasComponent.RANGE_SLIDER:
+				component = new CCRangeSlider(options, this.ctx);
+				break;
+
+			case CanvasComponent.PROGRESS_BAR:
+				component = new CCProgressBar(options, this.ctx);
+				break;
+
 			default:
 				CCUtil.Log('CreateComponent: Component creation failed');
 				break;
