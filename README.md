@@ -3,7 +3,7 @@
 Allows for creation of inputs and other components in a HTML 5 canvas.
 Aiming for easy extendability and ease-of-use.
 
-## Supported / implemented components
+## Supported / fully implemented components
 - [ ] Buttons
 - [ ] Checkboxes
 - [ ] Panels to group components
