@@ -26,10 +26,21 @@
 		<canvas id="test-canvas"></canvas>
 
 		<script>
+			// Setup canvas
 			document.querySelector('#test-canvas').width = document.body.clientWidth;
 			document.querySelector('#test-canvas').height = document.body.clientHeight;
 
+			// Instantiate ComponentCanvas
 			var componentCanvas = new ComponentCanvas('#test-canvas');
+
+			// Create test components
+			for(var type in CanvasComponent)
+			{
+				if(!CanvasComponent.hasOwnProperty(type))
+					continue;
+
+				componentCanvas.CreateComponent(CanvasComponent[type]);
+			}
 		</script>
 	</body>
 </html>

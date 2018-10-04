@@ -10,6 +10,8 @@ class Component
 		this.ctx = ctx;
 		this.ComponentType = componentType || null;
 		this.options = options;
+
+		CCUtil.Log(`Created component with type ${this.ComponentType}`);
 	}
 
 	Update(dt)
