@@ -9,18 +9,7 @@ class Component
 
 		this.ctx = ctx;
 		this.ComponentType = componentType || null;
-
-		if(CCUtil.IsUndefinedNullOrEmpty(options))
-		{
-			this.options =
-			{
-
-			};
-		}
-		else
-		{
-			this.options = options;
-		}
+		this.options = options;
 	}
 
 	Update(dt)
