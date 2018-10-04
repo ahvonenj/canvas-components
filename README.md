@@ -6,7 +6,7 @@ Aiming for easy extendability and ease-of-use.
 ## Supported / fully implemented components
 - [ ] Buttons
 - [ ] Checkboxes
-- [ ] Panels to group components
+- [ ] Panels for grouping components
 - [ ] Radio buttons
 - [ ] Text inputs
 - [ ] Labels
