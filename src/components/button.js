@@ -16,7 +16,7 @@ class CCButton extends Component
 			fontSize: 8,
 			fontColor: '#000',
 
-			backgroundColor: '#FFF'
+			backgroundColor: '#353b48'
 		}, options);
 
 		super(options, ctx, CanvasComponent.BUTTON);
@@ -32,6 +32,11 @@ class CCButton extends Component
 	Draw()
 	{
 		this.ctx.fillStyle = this.options.backgroundColor;
-		this.ctx.fillRect(this.x, this.y, this.width, this.height);
+		this.ctx.fillRect(
+			this.options.x, 
+			this.options.y, 
+			this.options.width, 
+			this.options.height
+		);
 	}
 }
