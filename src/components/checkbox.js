@@ -29,7 +29,7 @@ class CCCheckbox extends Component
 	}
 
 	// Component draw method
-	Draw(dt)
+	Draw()
 	{
 
 	}

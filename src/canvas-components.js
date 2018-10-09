@@ -19,6 +19,8 @@ class ComponentCanvas
 
 		this.canvas = document.querySelector(this.canvasselector);
 		this.ctx = this.canvas.getContext('2d');
+		this.canvasWidth = this.canvas.width;
+		this.canvasHeight = this.canvas.height;
 
 		// Instantiate CanvasComponentCollection to hold the components in
 		this.CanvasComponentCollection = new CanvasComponentCollection();
@@ -138,14 +140,16 @@ class ComponentCanvas
 	}
 
 	// Main component draw method and loop
-	Draw(dt)
+	Draw()
 	{
+		this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+
 		for(var component in this.CanvasComponentCollection.collection)
 		{
 			if(!this.CanvasComponentCollection.collection.hasOwnProperty(component))
 				continue;
 
-			this.CanvasComponentCollection.collection[component].Draw(dt);
+			this.CanvasComponentCollection.collection[component].Draw();
 		}
 	}
 

@@ -29,8 +29,9 @@ class CCButton extends Component
 	}
 
 	// Component draw method
-	Draw(dt)
+	Draw()
 	{
-
+		this.ctx.fillStyle = this.options.backgroundColor;
+		this.ctx.fillRect(this.x, this.y, this.width, this.height);
 	}
 }
