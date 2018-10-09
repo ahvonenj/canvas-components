@@ -18,16 +18,16 @@ class Component
 	}
 
 	// Component update method
-	Update(dt)
+	/*Update(dt)
 	{
-		console.log('Component update')
+
 	}
 
 	// Component draw method
 	Draw(dt)
 	{
 
-	}
+	}*/
 
 	// Component destroy method
 	Destroy()

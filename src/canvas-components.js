@@ -22,6 +22,21 @@ class ComponentCanvas
 
 		// Instantiate CanvasComponentCollection to hold the components in
 		this.CanvasComponentCollection = new CanvasComponentCollection();
+
+		// Main update and draw loop timing setup
+		this.t = 
+		{
+			now: null,
+			acc: 0,
+			dt: 0.01,
+			last: 0,
+			step: 1/60,
+			time: 0,
+			ft: 0
+		}
+
+		// Start main update and draw loop
+		this.Loop();
 	}
 
 	// Main component creation method
@@ -97,6 +112,29 @@ class ComponentCanvas
 	FindComponentById(id)
 	{
 		return this.CanvasComponentCollection.FindComponentById(component);
+	}
+
+	Loop()
+	{
+		this.t.now = CCUtil.Timestamp();
+		this.t.ft = this.t.now - this.t.last;
+
+		if(this.t.ft > 0.25)
+			this.t.ft = 0.25;
+
+		this.t.last = this.t.now; 
+		this.t.acc += this.t.ft;
+
+		while(this.t.acc >= this.t.dt) 
+		{
+			this.Update(this.t.dt);
+			
+			this.t.time += this.t.dt;
+			this.t.acc -= this.t.dt;
+		}
+
+		this.Draw();
+		requestAnimationFrame(function() { this.Loop(); }.bind(this));
 	}
 
 	// Main component draw method and loop

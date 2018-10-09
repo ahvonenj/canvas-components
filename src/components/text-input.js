@@ -21,4 +21,16 @@ class CCTextInput extends Component
 
 		super(options, ctx, CanvasComponent.TEXT_INPUT);
 	}
+
+	// Component update method
+	Update(dt)
+	{
+		
+	}
+
+	// Component draw method
+	Draw(dt)
+	{
+
+	}
 }

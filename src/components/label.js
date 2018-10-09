@@ -21,4 +21,16 @@ class CCLabel extends Component
 
 		super(options, ctx, CanvasComponent.LABEL);
 	}
+
+	// Component update method
+	Update(dt)
+	{
+		
+	}
+
+	// Component draw method
+	Draw(dt)
+	{
+
+	}
 }

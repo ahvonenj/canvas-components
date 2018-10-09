@@ -21,4 +21,16 @@ class CCPanel extends Component
 
 		super(options, ctx, CanvasComponent.PANEL);
 	}
+
+	// Component update method
+	Update(dt)
+	{
+		
+	}
+
+	// Component draw method
+	Draw(dt)
+	{
+
+	}
 }

@@ -21,4 +21,16 @@ class CCRangeSlider extends Component
 
 		super(options, ctx, CanvasComponent.RANGE_SLIDER);
 	}
+
+	// Component update method
+	Update(dt)
+	{
+		
+	}
+
+	// Component draw method
+	Draw(dt)
+	{
+
+	}
 }

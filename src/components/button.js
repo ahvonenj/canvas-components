@@ -22,8 +22,15 @@ class CCButton extends Component
 		super(options, ctx, CanvasComponent.BUTTON);
 	}
 
+	// Component update method
 	Update(dt)
 	{
-		console.log('Button update')
+		
+	}
+
+	// Component draw method
+	Draw(dt)
+	{
+
 	}
 }

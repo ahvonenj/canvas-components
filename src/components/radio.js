@@ -21,4 +21,16 @@ class CCRadioButton extends Component
 
 		super(options, ctx, CanvasComponent.RADIO);
 	}
+
+	// Component update method
+	Update(dt)
+	{
+		
+	}
+
+	// Component draw method
+	Draw(dt)
+	{
+
+	}
 }

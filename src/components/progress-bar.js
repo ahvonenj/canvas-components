@@ -21,4 +21,16 @@ class CCProgressBar extends Component
 
 		super(options, ctx, CanvasComponent.PROGRESS_BAR);
 	}
+
+	// Component update method
+	Update(dt)
+	{
+		
+	}
+
+	// Component draw method
+	Draw(dt)
+	{
+
+	}
 }

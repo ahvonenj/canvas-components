@@ -21,4 +21,16 @@ class CCCheckbox extends Component
 
 		super(options, ctx, CanvasComponent.CHECKBOX);
 	}
+
+	// Component update method
+	Update(dt)
+	{
+		
+	}
+
+	// Component draw method
+	Draw(dt)
+	{
+
+	}
 }
