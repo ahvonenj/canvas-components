@@ -114,6 +114,12 @@ class ComponentCanvas
 	// Main component update method and loop
 	Update(dt)
 	{
-		
+		for(var component in this.CanvasComponentCollection.collection)
+		{
+			if(!this.CanvasComponentCollection.collection.hasOwnProperty(component))
+				continue;
+
+			this.CanvasComponentCollection.collection[component].Update(dt);
+		}
 	}
 }

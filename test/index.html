@@ -40,6 +40,12 @@
 					continue;
 
 				componentCanvas.CreateComponent(CanvasComponent[type]);
+				componentCanvas.CreateComponent(CanvasComponent[type], 
+				{ 
+					x: Math.floor(Math.random() * 100),
+					y: Math.floor(Math.random() * 100),
+					z: Math.floor(Math.random() * 100),
+				});
 			}
 		</script>
 	</body>

@@ -40,4 +40,40 @@ CanvasComponentsUtil.Log = function(str)
 		console.log(str);
 }
 
+CanvasComponentsUtil.DefaultsDeep = function(target, defaults) 
+{
+	var clone = JSON.parse(JSON.stringify(target));
+
+	function run(clone, defaults) 
+	{
+		const DEFAULTS_PROPERTY_NAMES = Object.getOwnPropertyNames(defaults);
+
+		DEFAULTS_PROPERTY_NAMES.forEach(function (property) 
+		{
+			if(Object.prototype.toString.call(defaults[property]) === "[object Object]") 
+			{
+				if(!clone.hasOwnProperty(property)) 
+				{
+					clone[property] = {};
+				}
+
+				run(clone[property], defaults[property]);
+			} 
+			else if(!clone.hasOwnProperty(property)) 
+			{
+				clone[property] = defaults[property];
+			}
+		});
+	}
+
+	run(clone, defaults);
+
+	return clone;
+}
+
+CanvasComponentsUtil.Timestamp = function()
+{
+	return window.performance && window.performance.now ? window.performance.now() : new Date().getTime();
+}
+
 var CCUtil = CanvasComponentsUtil;

@@ -20,7 +20,7 @@ class Component
 	// Component update method
 	Update(dt)
 	{
-
+		console.log('Component update')
 	}
 
 	// Component draw method
