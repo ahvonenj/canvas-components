@@ -8,8 +8,8 @@ class CCCheckbox extends Component
 	{
 		options = Object.assign(
 		{ 
-			width: 25, 
-			height: 25,
+			width: 15, 
+			height: 15,
 			x: 0,
 			y: 0,
 			z: 0,
@@ -35,6 +35,18 @@ class CCCheckbox extends Component
 	// Component draw method
 	Draw()
 	{
+		this.ctx.fillStyle = this.options.backgroundColor;
+		this.ctx.strokeStyle = this.options.borderColor;
+		this.ctx.lineWidth = this.options.borderWidth;
 
+		this.ctx.rect(
+			this.options.x, 
+			this.options.y, 
+			this.options.width, 
+			this.options.height
+		);
+
+		this.ctx.fill();
+		this.ctx.stroke();
 	}
 }
