@@ -1,3 +1,7 @@
+/*
+	CLASS: CanvasComponentRadioButton (CCRadioButton)
+	DESC: Radio button component
+*/
 class CCRadioButton extends Component
 {
 	constructor(options, ctx)

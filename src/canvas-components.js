@@ -81,7 +81,7 @@ class ComponentCanvas
 				break;
 
 			default:
-				CCUtil.Log('CreateComponent: Component creation failed');
+				CCUtil.Log(`CreateComponent: Component creation failed (${componentType})`);
 				break;
 		}
 
@@ -93,9 +93,9 @@ class ComponentCanvas
 	AddComponent(component)
 	{
 		if(this.CanvasComponentCollection.AddComponent(component))
-			return true;
+			return component;
 		else
-			return false;
+			return null;
 	}
 
 	// Higher level method to remove component from the CanvasComponentCollection

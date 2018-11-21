@@ -1,3 +1,7 @@
+/*
+	CLASS: CanvasComponentTextInput (CCTextInput)
+	DESC: Text input component
+*/
 class CCTextInput extends Component
 {
 	constructor(options, ctx)

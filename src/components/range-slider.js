@@ -1,3 +1,7 @@
+/*
+	CLASS: CanvasComponentRangeSlider (CCRangeSlider)
+	DESC: Range slider component
+*/
 class CCRangeSlider extends Component
 {
 	constructor(options, ctx)

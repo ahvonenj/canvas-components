@@ -22,7 +22,6 @@ class CanvasComponentCollection
 			CCUtil.Log(`Add: ComponentCollection already has a component with id '${component.id}'`);
 		}
 
-
 		return false;
 	}
 

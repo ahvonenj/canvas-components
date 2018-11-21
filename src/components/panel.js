@@ -1,3 +1,7 @@
+/*
+	CLASS: CanvasComponentPanel (CCPanel)
+	DESC: Panel component
+*/
 class CCPanel extends Component
 {
 	constructor(options, ctx)

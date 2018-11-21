@@ -9,5 +9,8 @@ var CanvasComponent =
 	LABEL: 6,
 
 	RANGE_SLIDER: 7,
-	PROGRESS_BAR: 8
+	PROGRESS_BAR: 8,
+
+
+	COMPONENT_LABEL: 1000
 }

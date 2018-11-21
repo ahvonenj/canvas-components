@@ -14,6 +14,11 @@ class Component
 		this.ComponentType = componentType || null;
 		this.options = options;
 
+		if(this.ComponentType >= 1000)
+			this.isMetaComponent = true;
+		else
+			this.isMetaComponent = false;
+
 		CCUtil.Log(`Created component with type ${this.ComponentType}`);
 	}
 

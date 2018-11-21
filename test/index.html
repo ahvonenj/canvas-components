@@ -19,6 +19,8 @@
 		<script src = "../src/components/range-slider.js"></script>
 		<script src = "../src/components/progress-bar.js"></script>
 
+		<script src = "../src/components/component-label.js"></script>
+
 
 		<script src = "../src/canvas-components.js"></script>
 	</head>
@@ -39,13 +41,19 @@
 				if(!CanvasComponent.hasOwnProperty(type))
 					continue;
 
-				componentCanvas.CreateComponent(CanvasComponent[type]);
-				componentCanvas.CreateComponent(CanvasComponent[type], 
+				var component1 = componentCanvas.CreateComponent(CanvasComponent[type]);
+				var component2 = componentCanvas.CreateComponent(CanvasComponent[type], 
 				{ 
-					x: Math.floor(Math.random() * 100),
-					y: Math.floor(Math.random() * 100),
-					z: Math.floor(Math.random() * 100),
+					x: Math.floor(Math.random() * 200),
+					y: Math.floor(Math.random() * 200),
+					z: Math.floor(Math.random() * 200),
 				});
+
+				if(CanvasComponent[type] === CanvasComponent.BUTTON)
+				{
+					component1.SetText('Test Button 1');
+					component2.SetText('Test Button 2');
+				}
 			}
 		</script>
 	</body>

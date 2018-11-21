@@ -1,3 +1,7 @@
+/*
+	CLASS: CanvasComponentProgressBar (CCProgressBar)
+	DESC: Progress bar component
+*/
 class CCProgressBar extends Component
 {
 	constructor(options, ctx)

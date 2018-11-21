@@ -1,3 +1,7 @@
+/*
+	CLASS: CanvasComponentLabel (CCLabel)
+	DESC: Label component
+*/
 class CCLabel extends Component
 {
 	constructor(options, ctx)
@@ -15,6 +19,7 @@ class CCLabel extends Component
 
 			fontSize: 8,
 			fontColor: '#000',
+			fontFamily: 'Arial',
 
 			backgroundColor: '#FFF'
 		}, options);

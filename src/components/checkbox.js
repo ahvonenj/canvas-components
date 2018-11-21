@@ -1,3 +1,7 @@
+/*
+	CLASS: CanvasComponentCheckbox (CCCheckbox)
+	DESC: Checkbox component
+*/
 class CCCheckbox extends Component
 {
 	constructor(options, ctx)
