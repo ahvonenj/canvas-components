@@ -43,9 +43,14 @@ class CCLabel extends Component
 	// Component draw method
 	Draw()
 	{
+		this.ctx.textAlign = "start";
+		this.ctx.textBaseline = "alphabetic";
 		this.ctx.fillStyle = this.options.fontColor;
+		this.ctx.strokeStyle = this.options.fontColor;
 		this.ctx.font = `${this.options.fontSize}px ${this.options.fontFamily}`;
 
+		this.ctx.beginPath();
 		this.ctx.fillText(this.textContent, this.options.x, this.options.y);
+		this.ctx.closePath();
 	}
 }

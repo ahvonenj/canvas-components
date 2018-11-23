@@ -8,13 +8,12 @@ class CCRadioButton extends Component
 	{
 		options = Object.assign(
 		{ 
-			width: 25, 
-			height: 25,
 			x: 0,
 			y: 0,
 			z: 0,
+			radius: 8,
 
-			borderWidth: 1,
+			borderWidth: 2,
 			borderColor: '#000',
 
 			fontSize: 8,
@@ -35,6 +34,16 @@ class CCRadioButton extends Component
 	// Component draw method
 	Draw()
 	{
+		this.ctx.fillStyle = this.options.backgroundColor;
+		this.ctx.strokeStyle = this.options.borderColor;
+		this.ctx.lineWidth = this.options.borderWidth;
 
+		this.ctx.beginPath();
+
+		this.ctx.arc(this.options.x, this.options.y, this.options.radius, 0, 2 * Math.PI);
+
+		this.ctx.closePath();
+		this.ctx.fill();
+		this.ctx.stroke();	
 	}
 }

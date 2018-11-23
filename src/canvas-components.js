@@ -46,6 +46,13 @@ class ComponentCanvas
 	{
 		var component = null;
 
+		// Meta component, skip
+		if(componentType >= 1000)
+		{
+			CCUtil.Log(`CreateComponent: Trying to instantiate Meta Component, ignoring`);
+			return false;
+		}
+
 		switch(componentType)
 		{
 			case CanvasComponent.BUTTON:
@@ -85,7 +92,7 @@ class ComponentCanvas
 				break;
 		}
 
-		// Returns true or false
+		// Returns the component or false
 		return this.AddComponent(component);
 	}
 

@@ -20,6 +20,7 @@
 		<script src = "../src/components/progress-bar.js"></script>
 
 		<script src = "../src/components/component-label.js"></script>
+		<script src = "../src/components/component-editable-text.js"></script>
 
 
 		<script src = "../src/canvas-components.js"></script>
@@ -35,27 +36,38 @@
 			// Instantiate ComponentCanvas
 			var componentCanvas = new ComponentCanvas('#test-canvas');
 
+			var x = 50;
+			var y = 50;
+			var z = 0;
+
 			// Create test components
 			for(var type in CanvasComponent)
 			{
 				if(!CanvasComponent.hasOwnProperty(type))
 					continue;
 
-				var component2 = componentCanvas.CreateComponent(CanvasComponent[type], 
+				var component = componentCanvas.CreateComponent(CanvasComponent[type], 
 				{ 
-					x: Math.floor(Math.random() * 200) + 50,
-					y: Math.floor(Math.random() * 200) + 50,
-					z: Math.floor(Math.random() * 200) + 50,
+					x: x,
+					y: y,
+					z: z,
 				});
 
 				if(CanvasComponent[type] === CanvasComponent.BUTTON)
 				{
-					component2.SetText('Test Button 2');
+					component.SetText('Test Button 1');
 				}
 				else if(CanvasComponent[type] === CanvasComponent.LABEL)
 				{
-					component2.SetText('Test Label 2');
+					component.SetText('Test Label 1');
 				}
+				else if(CanvasComponent[type] === CanvasComponent.TEXT_INPUT)
+				{
+					component.SetValue('Test Input 1');
+				}
+
+				y += 50;
+				z += 50;
 			}
 		</script>
 	</body>

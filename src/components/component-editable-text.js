@@ -2,7 +2,7 @@
 	CLASS: ComponentLabel
 	DESC: Meta label component
 */
-class ComponentLabel extends Component
+class ComponentEditableText extends Component
 {
 	constructor(options, ctx, parentComponent)
 	{
@@ -17,18 +17,23 @@ class ComponentLabel extends Component
 			fontFamily: 'Arial'
 		}, options);
 
-		super(options, ctx, CanvasComponent.COMPONENT_LABEL);
+		super(options, ctx, CanvasComponent.COMPONENT_EDITABLE_TEXT);
 
 		if(CCUtil.IsUndefinedNullOrEmpty(parentComponent))
-			CCUtil.Log(`Parent component could not be inherited for ComponentLabel#${this.id}`);
+			CCUtil.Log(`Parent component could not be inherited for ComponentEditableText#${this.id}`);
 
 		this.parentComponent = parentComponent;
-		this.textContent = '';
+		this.value = '';
 	}
 
-	SetText(str)
+	SetValue(str)
 	{
-		this.textContent = str;
+		this.value = str;
+	}
+
+	GetValue()
+	{
+		return this.value;
 	}
 
 	// Component update method
@@ -40,14 +45,14 @@ class ComponentLabel extends Component
 	// Component draw method
 	Draw()
 	{
-		this.ctx.textAlign = "center";
+		this.ctx.textAlign = "start";
 		this.ctx.textBaseline = "middle";
 		this.ctx.fillStyle = this.options.fontColor;
 		this.ctx.strokeStyle = this.options.fontColor;
 		this.ctx.font = `${this.options.fontSize}px ${this.options.fontFamily}`;
 
 		this.ctx.beginPath();
-		this.ctx.fillText(this.textContent, this.options.x, this.options.y);
+		this.ctx.fillText(this.value, this.options.x, this.options.y);
 		this.ctx.closePath();
 	}
 }

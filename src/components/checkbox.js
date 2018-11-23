@@ -14,8 +14,8 @@ class CCCheckbox extends Component
 			y: 0,
 			z: 0,
 
-			borderWidth: 1,
-			borderColor: '#000',
+			borderWidth: 2,
+			borderColor: '#000000',
 
 			fontSize: 8,
 			fontColor: '#000',
@@ -39,6 +39,8 @@ class CCCheckbox extends Component
 		this.ctx.strokeStyle = this.options.borderColor;
 		this.ctx.lineWidth = this.options.borderWidth;
 
+		this.ctx.beginPath();
+
 		this.ctx.rect(
 			this.options.x, 
 			this.options.y, 
@@ -46,6 +48,7 @@ class CCCheckbox extends Component
 			this.options.height
 		);
 
+		this.ctx.closePath();
 		this.ctx.fill();
 		this.ctx.stroke();
 	}

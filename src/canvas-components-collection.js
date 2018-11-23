@@ -10,7 +10,10 @@ class CanvasComponentCollection
 	AddComponent(component)
 	{
 		if(CCUtil.IsUndefinedNullOrEmpty(component) || !CCUtil.IsComponent(component))
+		{
+			CCUtil.Log(`Add: Component is null or given component is not a component`);
 			return false;
+		}
 
 		if(typeof this.collection[component.id] === 'undefined')
 		{
@@ -20,9 +23,8 @@ class CanvasComponentCollection
 		else
 		{
 			CCUtil.Log(`Add: ComponentCollection already has a component with id '${component.id}'`);
+			return false;
 		}
-
-		return false;
 	}
 
 	// Remove component from the collection
