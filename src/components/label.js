@@ -17,7 +17,7 @@ class CCLabel extends Component
 			borderWidth: 0,
 			borderColor: '#000',
 
-			fontSize: 8,
+			fontSize: 12,
 			fontColor: '#000',
 			fontFamily: 'Arial',
 
@@ -25,6 +25,13 @@ class CCLabel extends Component
 		}, options);
 
 		super(options, ctx, CanvasComponent.LABEL);
+
+		this.textContent = '';
+	}
+
+	SetText(str)
+	{
+		this.textContent = str;
 	}
 
 	// Component update method
@@ -36,6 +43,9 @@ class CCLabel extends Component
 	// Component draw method
 	Draw()
 	{
+		this.ctx.fillStyle = this.options.fontColor;
+		this.ctx.font = `${this.options.fontSize}px ${this.options.fontFamily}`;
 
+		this.ctx.fillText(this.textContent, this.options.x, this.options.y);
 	}
 }

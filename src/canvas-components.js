@@ -116,6 +116,11 @@ class ComponentCanvas
 		return this.CanvasComponentCollection.FindComponentById(component);
 	}
 
+	GetContext()
+	{
+		return this.ctx;
+	}
+
 	Loop()
 	{
 		this.t.now = CCUtil.Timestamp();

@@ -41,18 +41,20 @@
 				if(!CanvasComponent.hasOwnProperty(type))
 					continue;
 
-				var component1 = componentCanvas.CreateComponent(CanvasComponent[type]);
 				var component2 = componentCanvas.CreateComponent(CanvasComponent[type], 
 				{ 
-					x: Math.floor(Math.random() * 200),
-					y: Math.floor(Math.random() * 200),
-					z: Math.floor(Math.random() * 200),
+					x: Math.floor(Math.random() * 200) + 50,
+					y: Math.floor(Math.random() * 200) + 50,
+					z: Math.floor(Math.random() * 200) + 50,
 				});
 
 				if(CanvasComponent[type] === CanvasComponent.BUTTON)
 				{
-					component1.SetText('Test Button 1');
 					component2.SetText('Test Button 2');
+				}
+				else if(CanvasComponent[type] === CanvasComponent.LABEL)
+				{
+					component2.SetText('Test Label 2');
 				}
 			}
 		</script>
