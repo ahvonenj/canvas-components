@@ -43,7 +43,7 @@ class CCButton extends Component
 		{
 			x: this.options.x + (this.options.width / 2),
 			y: this.options.y + (this.options.height / 2)
-		}, this.ctx, this);
+		}, this.ctx);
 	}
 
 	// Set button text

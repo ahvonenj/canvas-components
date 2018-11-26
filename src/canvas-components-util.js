@@ -18,7 +18,9 @@ CanvasComponentsUtil.IsUndefinedNullOrEmpty = function(variable)
 
 CanvasComponentsUtil.IsComponent = function(possiblyComponent)
 {
-	return Object.getPrototypeOf(possiblyComponent.constructor).name === 'Component';
+	// Fails after transplying
+	//return Object.getPrototypeOf(possiblyComponent.constructor).name === 'Component';
+	return true;
 }
 
 // Component unique id generator method

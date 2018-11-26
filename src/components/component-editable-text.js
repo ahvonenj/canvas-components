@@ -19,10 +19,10 @@ class ComponentEditableText extends Component
 
 		super(options, ctx, canvas, CanvasComponent.COMPONENT_EDITABLE_TEXT);
 
-		if(CCUtil.IsUndefinedNullOrEmpty(parentComponent))
+		/*if(CCUtil.IsUndefinedNullOrEmpty(parentComponent))
 			CCUtil.Log(`Parent component could not be inherited for ComponentEditableText#${this.id}`);
 
-		this.parentComponent = parentComponent;
+		this.parentComponent = parentComponent;*/
 		this.value = '';
 	}
 

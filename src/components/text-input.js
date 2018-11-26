@@ -26,7 +26,7 @@ class CCTextInput extends Component
 		{
 			x: this.options.x,
 			y: this.options.y + (this.options.height / 2)
-		}, this.ctx, this);
+		}, this.ctx);
 	}
 
 	// Set text input value

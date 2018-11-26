@@ -19,10 +19,10 @@ class ComponentLabel extends Component
 
 		super(options, ctx, canvas, CanvasComponent.COMPONENT_LABEL);
 
-		if(CCUtil.IsUndefinedNullOrEmpty(parentComponent))
+		/*if(CCUtil.IsUndefinedNullOrEmpty(parentComponent))
 			CCUtil.Log(`Parent component could not be inherited for ComponentLabel#${this.id}`);
 
-		this.parentComponent = parentComponent;
+		this.parentComponent = parentComponent;*/
 		this.textContent = '';
 	}
 
