@@ -64,6 +64,11 @@
 						this.options.backgroundColor = 'red';
 					else
 						this.options.backgroundColor = 'blue';
+
+					if(this.options.fontColor !== 'red')
+						this.options.fontColor = 'red';
+					else
+						this.options.fontColor = 'blue';
 				});
 
 				if(CanvasComponent[type] === CanvasComponent.BUTTON)
@@ -79,7 +84,7 @@
 					component.SetValue('Test Input 1');
 				}
 
-				y += 170;
+				y += component._getBoundingBox().h + 50;
 				z += 50;
 			}
 		</script>
