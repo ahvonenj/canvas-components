@@ -3,13 +3,13 @@
 Allows for creation of inputs and other components in a HTML 5 canvas.
 Aiming for easy extendability and ease-of-use.
 
-## Supported / fully implemented components
-- [ ] Buttons
-- [ ] Checkboxes
+## Implemented or almost implemented components
+- [x] Buttons
+- [x] Checkboxes
 - [ ] Panels for grouping components
-- [ ] Radio buttons
-- [ ] Text inputs
-- [ ] Labels
+- [x] Radio buttons
+- [x] Text inputs
+- [x] Labels
 - [ ] Range sliders
 - [ ] Progress bars
 
@@ -21,8 +21,38 @@ Aiming for easy extendability and ease-of-use.
 - [x] Component enumeration
 - [x] Component default options
 - [x] Component unique indentifiers
-- [ ] Draw components on canvas
-- [ ] Update components states
-- [ ] Get and set values of inputs
-- [ ] Interaction with buttons, checkboxes, text inputs, ...
+- [x] Draw components on canvas
+- [x] Update component states
+- [x] Get and set values of inputs
+- [x] Interaction with buttons, checkboxes, text inputs, ...
 - [ ] Component relative positioning (e.g. when component is inside a panel)
+- [x] Default event handlers for components
+- [x] Point-rectangle intersection for event handling
+- [x] Calculate bounding boxes for components
+- [x] Event enumeration
+- [x] Meta components / Subcomponents (component-component compositions)
+- [x] Destroy / Remove / Delete components
+- [x] Mouse event: click
+- [ ] Mouse event: dblclick
+- [ ] Mouse event: mousedown
+- [ ] Mouse event: mouseup
+- [ ] Mouse event: mouseenter
+- [ ] Mouse event: mouseleave
+- [x] Mouse event: mouseover
+- [x] Mouse event: mouseout
+- [x] Mouse event: mousemove
+- [ ] Mouse event: scroll
+
+## Project related
+
+- [x] Minify everything
+- [x] Babel everything
+- [x] Concat everything
+- [x] Source maps
+- [x] Build system
+- [x] Livereload
+- [x] Tests
+- [ ] Proper tests
+- [ ] Optimize drawing
+- [ ] Optimize event handling
+- [ ] Optimize update logic
