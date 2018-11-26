@@ -4,7 +4,7 @@
 */
 class CCRangeSlider extends Component
 {
-	constructor(options, ctx)
+	constructor(options, ctx, canvas)
 	{
 		options = Object.assign(
 		{ 
@@ -23,7 +23,7 @@ class CCRangeSlider extends Component
 			backgroundColor: '#FFF'
 		}, options);
 
-		super(options, ctx, CanvasComponent.RANGE_SLIDER);
+		super(options, ctx, canvas, CanvasComponent.RANGE_SLIDER);
 	}
 
 	// Component update method

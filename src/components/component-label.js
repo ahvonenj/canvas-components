@@ -4,7 +4,7 @@
 */
 class ComponentLabel extends Component
 {
-	constructor(options, ctx, parentComponent)
+	constructor(options, ctx, canvas, parentComponent)
 	{
 		options = Object.assign(
 		{ 
@@ -17,7 +17,7 @@ class ComponentLabel extends Component
 			fontFamily: 'Arial'
 		}, options);
 
-		super(options, ctx, CanvasComponent.COMPONENT_LABEL);
+		super(options, ctx, canvas, CanvasComponent.COMPONENT_LABEL);
 
 		if(CCUtil.IsUndefinedNullOrEmpty(parentComponent))
 			CCUtil.Log(`Parent component could not be inherited for ComponentLabel#${this.id}`);

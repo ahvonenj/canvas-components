@@ -4,7 +4,7 @@
 */
 class CCRadioButton extends Component
 {
-	constructor(options, ctx)
+	constructor(options, ctx, canvas)
 	{
 		options = Object.assign(
 		{ 
@@ -22,7 +22,7 @@ class CCRadioButton extends Component
 			backgroundColor: '#FFF'
 		}, options);
 
-		super(options, ctx, CanvasComponent.RADIO);
+		super(options, ctx, canvas, CanvasComponent.RADIO);
 	}
 
 	// Component update method

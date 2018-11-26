@@ -4,7 +4,7 @@
 */
 class CCButton extends Component
 {
-	constructor(options, ctx)
+	constructor(options, ctx, canvas)
 	{
 		options = Object.assign(
 		{ 
@@ -20,7 +20,7 @@ class CCButton extends Component
 			backgroundColor: '#353b48'
 		}, options);
 
-		super(options, ctx, CanvasComponent.BUTTON);
+		super(options, ctx, canvas, CanvasComponent.BUTTON);
 
 		this._componentLabel = new ComponentLabel(
 		{

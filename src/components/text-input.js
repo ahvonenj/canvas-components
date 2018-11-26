@@ -4,7 +4,7 @@
 */
 class CCTextInput extends Component
 {
-	constructor(options, ctx)
+	constructor(options, ctx, canvas)
 	{
 		options = Object.assign(
 		{ 
@@ -20,7 +20,7 @@ class CCTextInput extends Component
 			backgroundColor: '#FFF'
 		}, options);
 
-		super(options, ctx, CanvasComponent.TEXT_INPUT);
+		super(options, ctx, canvas, CanvasComponent.TEXT_INPUT);
 
 		this._componentText = new ComponentEditableText(
 		{

@@ -76,4 +76,17 @@ CanvasComponentsUtil.Timestamp = function()
 	return window.performance && window.performance.now ? window.performance.now() : new Date().getTime();
 }
 
+CanvasComponentsUtil.Collides = function(rect, x, y) 
+{
+	var left = rect.x;
+	var right = rect.x + rect.w;
+	var top = rect.y;
+	var bottom = rect.y + rect.h;
+
+	if (right >= x && left <= x && bottom >= y && top <= y) 
+		return true;
+
+	return false;
+}
+
 var CCUtil = CanvasComponentsUtil;

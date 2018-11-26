@@ -4,7 +4,7 @@
 */
 class CCLabel extends Component
 {
-	constructor(options, ctx)
+	constructor(options, ctx, canvas)
 	{
 		options = Object.assign(
 		{ 
@@ -24,7 +24,7 @@ class CCLabel extends Component
 			backgroundColor: '#FFF'
 		}, options);
 
-		super(options, ctx, CanvasComponent.LABEL);
+		super(options, ctx, canvas, CanvasComponent.LABEL);
 
 		this.textContent = '';
 	}

@@ -37,6 +37,17 @@ class ComponentCanvas
 			ft: 0
 		}
 
+		this.canvas.addEventListener('click', this.e_onClick.bind(this));
+		this.canvas.addEventListener('dblclick', this.e_onDblClick.bind(this));
+		this.canvas.addEventListener('mousedown', this.e_mouseDown.bind(this));
+		this.canvas.addEventListener('mouseup', this.e_mouseUp.bind(this));
+		this.canvas.addEventListener('mouseenter', this.e_mouseEnter.bind(this));
+		this.canvas.addEventListener('mouseleave', this.e_mouseLeave.bind(this));
+		this.canvas.addEventListener('mouseover', this.e_mouseOver.bind(this));
+		this.canvas.addEventListener('mouseout', this.e_mouseOut.bind(this));
+		this.canvas.addEventListener('mousemove', this.e_mouseMove.bind(this));
+		this.canvas.addEventListener('scroll', this.e_mouseScroll.bind(this));
+
 		// Start main update and draw loop
 		this.Loop();
 	}
@@ -175,5 +186,70 @@ class ComponentCanvas
 
 			this.CanvasComponentCollection.collection[component].Update(dt);
 		}
+	}
+
+	// Click event handler
+	e_onClick(e)
+	{
+		var components = this.CanvasComponentCollection.GetComponentsAtPoint(e.clientX, e.clientY);
+
+		components.forEach(function(component)
+		{
+			component._mouseEvent('click', e);
+		});
+	}
+
+	// Double click event handler
+	e_onDblClick(e)
+	{
+		
+	}
+
+	// Mouse down event handler
+	e_mouseDown(e)
+	{
+		
+	}
+
+	// Mouse up event handler
+	e_mouseUp(e)
+	{
+		
+	}
+
+	// Mouse enter event handler
+	e_mouseEnter(e)
+	{
+		
+	}
+
+	// Mouse leave event handler
+	e_mouseLeave(e)
+	{
+		
+	}
+
+	// Mouse over event handler
+	e_mouseOver(e)
+	{
+		
+	}
+
+	// Mouse out event handler
+	e_mouseOut(e)
+	{
+
+	}
+
+	// Mouse move event handler
+	e_mouseMove(e)
+	{
+		
+	}
+
+	// Mouse scroll event handler
+	e_mouseScroll(e)
+	{
+		
 	}
 }

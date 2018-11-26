@@ -83,5 +83,33 @@ class CanvasComponentCollection
 
 		return null;
 	}
+
+	GetBoundingBoxes()
+	{
+		return Object.values(this.collection).map(function(component)
+		{
+			return {
+				component: component,
+				BB: component._getBoundingBox()
+			};
+		});
+	}
+
+	GetComponentsAtPoint(x, y)
+	{
+		return Object.values(this.collection).map(function(component)
+		{
+			return {
+				component: component,
+				BB: component._getBoundingBox()
+			};
+		}).filter(function(BBObject)
+		{
+			return CCUtil.Collides(BBObject.BB, x, y);
+		}).map(function(BBObject)
+		{
+			return BBObject.component;
+		});
+	}
 }
 

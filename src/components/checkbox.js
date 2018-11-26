@@ -4,7 +4,7 @@
 */
 class CCCheckbox extends Component
 {
-	constructor(options, ctx)
+	constructor(options, ctx, canvas)
 	{
 		options = Object.assign(
 		{ 
@@ -23,7 +23,7 @@ class CCCheckbox extends Component
 			backgroundColor: '#FFF'
 		}, options);
 
-		super(options, ctx, CanvasComponent.CHECKBOX);
+		super(options, ctx, canvas, CanvasComponent.CHECKBOX);
 	}
 
 	// Component update method

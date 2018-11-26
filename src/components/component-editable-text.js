@@ -4,7 +4,7 @@
 */
 class ComponentEditableText extends Component
 {
-	constructor(options, ctx, parentComponent)
+	constructor(options, ctx, canvas, parentComponent)
 	{
 		options = Object.assign(
 		{ 
@@ -17,7 +17,7 @@ class ComponentEditableText extends Component
 			fontFamily: 'Arial'
 		}, options);
 
-		super(options, ctx, CanvasComponent.COMPONENT_EDITABLE_TEXT);
+		super(options, ctx, canvas, CanvasComponent.COMPONENT_EDITABLE_TEXT);
 
 		if(CCUtil.IsUndefinedNullOrEmpty(parentComponent))
 			CCUtil.Log(`Parent component could not be inherited for ComponentEditableText#${this.id}`);

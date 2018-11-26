@@ -4,7 +4,7 @@
 */
 class CCPanel extends Component
 {
-	constructor(options, ctx)
+	constructor(options, ctx, canvas)
 	{
 		options = Object.assign(
 		{ 
@@ -14,7 +14,7 @@ class CCPanel extends Component
 			y: 0,
 			z: 0,
 
-			borderWidth: 1,
+			borderWidth: 2,
 			borderColor: '#000',
 
 			fontSize: 8,
@@ -23,7 +23,7 @@ class CCPanel extends Component
 			backgroundColor: '#FFF'
 		}, options);
 
-		super(options, ctx, CanvasComponent.PANEL);
+		super(options, ctx, canvas, CanvasComponent.PANEL);
 	}
 
 	// Component update method
@@ -61,7 +61,5 @@ class CCPanel extends Component
 		this.ctx.closePath();
 		this.ctx.fill();
 		this.ctx.stroke();
-
-		this._componentLabel.Draw();
 	}
 }
