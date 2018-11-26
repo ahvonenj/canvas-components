@@ -51,6 +51,7 @@ Aiming for easy extendability and ease-of-use.
 - [x] Source maps
 - [x] Build system
 - [x] Livereload
+- [x] .gitignore
 - [x] Tests
 - [ ] Proper tests
 - [ ] Optimize drawing
