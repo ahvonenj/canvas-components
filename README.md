@@ -36,6 +36,7 @@ Aiming for easy extendability and ease-of-use.
 - [ ] Viewport resize handling
 - [ ] Mobile support
 - [ ] Touch support
+- [ ] Clipping / scrolling & scrollbars
 - [x] Mouse event: click
 - [ ] Mouse event: dblclick
 - [ ] Mouse event: mousedown
