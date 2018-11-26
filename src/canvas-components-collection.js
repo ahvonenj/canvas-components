@@ -111,5 +111,10 @@ class CanvasComponentCollection
 			return BBObject.component;
 		});
 	}
+
+	GetComponents()
+	{
+		return Object.values(this.collection);
+	}
 }
 

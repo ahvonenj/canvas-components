@@ -20,6 +20,8 @@ class Component
 		else
 			this.isMetaComponent = false;
 
+		this.hasFocus = false;
+
 		this.mouseEvents = { };
 
 		CCUtil.Log(`Created component with type ${this.ComponentType}`);
@@ -27,7 +29,7 @@ class Component
 
 	on(eventType, callback)
 	{
-		if(ComponentEvents.indexOf(eventType) === -1)
+		if(Object.values(ComponentEvent).indexOf(eventType) === -1)
 		{
 			console.error(`Unsupported event '${eventType}' for component`);
 			return;
@@ -38,6 +40,16 @@ class Component
 
 	_mouseEvent(eventType, e)
 	{
+		switch(eventType)
+		{
+			case ComponentEvent.CLICK:
+				this.hasFocus = true;
+				break;
+
+			default:
+				break;
+		}
+
 		if(typeof this.mouseEvents[eventType] !== 'undefined' &&
 		   typeof this.mouseEvents[eventType] !== null)
 		{
@@ -80,6 +92,30 @@ class Component
 		}
 
 		return { x: x, y: y, w: w, h: h };
+	}
+
+	_drawFocus()
+	{
+		if(!this.hasFocus)
+			return;
+
+		this.ctx.strokeStyle = 'magenta';
+		this.ctx.fillStyle = 'magenta';
+		this.ctx.lineWidth = 2;
+
+		var bb = this._getBoundingBox();
+
+		this.ctx.beginPath();
+
+		this.ctx.rect(
+			bb.x - 3, 
+			bb.y - 3, 
+			bb.w + 6, 
+			bb.h + 6
+		);
+
+		this.ctx.closePath();
+		this.ctx.stroke();
 	}
 
 	// Component destroy method

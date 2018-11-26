@@ -52,22 +52,5 @@ class CCLabel extends Component
 		this.ctx.beginPath();
 		this.ctx.fillText(this.textContent, this.options.x, this.options.y);
 		this.ctx.closePath();
-
-		/*this.ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-		this.ctx.strokeStyle = this.options.borderColor;
-		this.ctx.lineWidth = this.options.borderWidth;
-
-		var t = this._getBoundingBox();
-		this.ctx.beginPath();
-
-		this.ctx.rect(
-			t.x, 
-			t.y, 
-			t.w, 
-			t.h
-		);
-
-		this.ctx.closePath();
-		this.ctx.stroke();*/
 	}
 }

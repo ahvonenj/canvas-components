@@ -173,6 +173,7 @@ class ComponentCanvas
 				continue;
 
 			this.CanvasComponentCollection.collection[component].Draw();
+			this.CanvasComponentCollection.collection[component]._drawFocus();
 		}
 	}
 
@@ -193,9 +194,14 @@ class ComponentCanvas
 	{
 		var components = this.CanvasComponentCollection.GetComponentsAtPoint(e.clientX, e.clientY);
 
+		this.CanvasComponentCollection.GetComponents().forEach(function(component)
+		{
+			component.hasFocus = false;
+		});
+
 		components.forEach(function(component)
 		{
-			component._mouseEvent('click', e);
+			component._mouseEvent(ComponentEvent.CLICK, e);
 		});
 	}
 
