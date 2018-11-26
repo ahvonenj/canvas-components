@@ -53,4 +53,10 @@ class CCLabel extends Component
 		this.ctx.fillText(this.textContent, this.options.x, this.options.y);
 		this.ctx.closePath();
 	}
+
+	// Default component event logic
+	_mouseEvent(eventType, e)
+	{
+		super._mouseEvent(eventType, e);
+	}
 }

@@ -17,6 +17,7 @@ class ComponentCanvas
 			return;
 		}
 
+		// Canvas attributes
 		this.canvas = document.querySelector(this.canvasselector);
 		this.ctx = this.canvas.getContext('2d');
 		this.canvasWidth = this.canvas.width;
@@ -37,6 +38,7 @@ class ComponentCanvas
 			ft: 0
 		}
 
+		// Bind all the native event listeners and screw them up later with cool custom things
 		this.canvas.addEventListener('click', this.e_onClick.bind(this));
 		this.canvas.addEventListener('dblclick', this.e_onDblClick.bind(this));
 		this.canvas.addEventListener('mousedown', this.e_mouseDown.bind(this));
@@ -139,6 +141,7 @@ class ComponentCanvas
 		return this.ctx;
 	}
 
+	// Actually the main loop
 	Loop()
 	{
 		this.t.now = CCUtil.Timestamp();
@@ -165,8 +168,10 @@ class ComponentCanvas
 	// Main component draw method and loop
 	Draw()
 	{
+		// Clear the canvas, optimize later if enough brain
 		this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
 
+		// Draw everything
 		for(var component in this.CanvasComponentCollection.collection)
 		{
 			if(!this.CanvasComponentCollection.collection.hasOwnProperty(component))
@@ -192,13 +197,16 @@ class ComponentCanvas
 	// Click event handler
 	e_onClick(e)
 	{
+		// Get all components under mouse click coordinates
 		var components = this.CanvasComponentCollection.GetComponentsAtPoint(e.clientX, e.clientY);
 
+		// Set focus of every component to false
 		this.CanvasComponentCollection.GetComponents().forEach(function(component)
 		{
 			component.hasFocus = false;
 		});
 
+		// Call the click events of all components returned by GetComponentsAtPoint
 		components.forEach(function(component)
 		{
 			component._mouseEvent(ComponentEvent.CLICK, e);
@@ -238,7 +246,7 @@ class ComponentCanvas
 	// Mouse over event handler
 	e_mouseOver(e)
 	{
-		
+
 	}
 
 	// Mouse out event handler
@@ -250,7 +258,20 @@ class ComponentCanvas
 	// Mouse move event handler
 	e_mouseMove(e)
 	{
-		
+		// Should probably move this to Update loop
+		this.CanvasComponentCollection.GetComponents().forEach(function(component)
+		{
+			if(CCUtil.Collides(component._getBoundingBox(), e.clientX, e.clientY))
+			{
+				if(!component.isMouseOver)
+					component._mouseEvent(ComponentEvent.MOUSE_OVER, e);
+			}
+			else
+			{
+				if(component.isMouseOver)
+					component._mouseEvent(ComponentEvent.MOUSE_OUT, e);
+			}
+		});
 	}
 
 	// Mouse scroll event handler

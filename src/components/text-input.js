@@ -29,11 +29,13 @@ class CCTextInput extends Component
 		}, this.ctx, this);
 	}
 
+	// Set text input value
 	SetValue(str)
 	{
 		this._componentText.SetValue(str);
 	}
 
+	// Get text input value
 	GetValue()
 	{
 		return this._componentText.GetValue();
@@ -66,6 +68,25 @@ class CCTextInput extends Component
 		this.ctx.stroke();
 
 		this._componentText.Draw();
+	}
 
+	// Default component event logic
+	_mouseEvent(eventType, e)
+	{
+		switch(eventType)
+		{
+			case ComponentEvent.MOUSE_OVER:
+				document.body.style.cursor = 'text';
+				break;
+
+			case ComponentEvent.MOUSE_OUT:
+				document.body.style.cursor = 'default';
+				break;
+
+			default:
+				break;
+		}
+
+		super._mouseEvent(eventType, e);
 	}
 }

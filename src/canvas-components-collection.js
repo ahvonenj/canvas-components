@@ -84,6 +84,7 @@ class CanvasComponentCollection
 		return null;
 	}
 
+	// Returns a bounding box and a component ref for every component in collection
 	GetBoundingBoxes()
 	{
 		return Object.values(this.collection).map(function(component)
@@ -95,6 +96,7 @@ class CanvasComponentCollection
 		});
 	}
 
+	// Returns all components whose bounding box collide with given x, y
 	GetComponentsAtPoint(x, y)
 	{
 		return Object.values(this.collection).map(function(component)
@@ -112,6 +114,7 @@ class CanvasComponentCollection
 		});
 	}
 
+	// Returns all components
 	GetComponents()
 	{
 		return Object.values(this.collection);

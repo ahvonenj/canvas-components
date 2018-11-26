@@ -1,4 +1,4 @@
-// List of supported Canvas Component events
+// "Enum" of supported Canvas Component events
 var ComponentEvent =
 {
 	CLICK: 'click',

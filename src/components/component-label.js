@@ -26,9 +26,16 @@ class ComponentLabel extends Component
 		this.textContent = '';
 	}
 
+	// Set component label text
 	SetText(str)
 	{
 		this.textContent = str;
+	}
+
+	// Get component label text
+	GetText()
+	{
+		return this.textContent;
 	}
 
 	// Component update method

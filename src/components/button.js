@@ -22,6 +22,7 @@ class CCButton extends Component
 
 		super(options, ctx, canvas, CanvasComponent.BUTTON);
 
+		// Default gradient shading
 		if(this.options.backgroundColor === null)
 		{
 			var gradient = this.ctx.createLinearGradient(
@@ -37,6 +38,7 @@ class CCButton extends Component
 			this.options.backgroundColor = gradient;
 		}
 
+		// Instantiate the text of the button as a ComponentLabel
 		this._componentLabel = new ComponentLabel(
 		{
 			x: this.options.x + (this.options.width / 2),
@@ -44,9 +46,16 @@ class CCButton extends Component
 		}, this.ctx, this);
 	}
 
+	// Set button text
 	SetText(str)
 	{
 		this._componentLabel.SetText(str);
+	}
+
+	// Get button text
+	GetText()
+	{
+		return this._componentLabel.GetText();
 	}
 
 	// Component update method
@@ -76,5 +85,25 @@ class CCButton extends Component
 		this.ctx.stroke();
 
 		this._componentLabel.Draw();
+	}
+
+	// Default component event logic
+	_mouseEvent(eventType, e)
+	{
+		switch(eventType)
+		{
+			case ComponentEvent.MOUSE_OVER:
+				document.body.style.cursor = 'pointer';
+				break;
+
+			case ComponentEvent.MOUSE_OUT:
+				document.body.style.cursor = 'default';
+				break;
+
+			default:
+				break;
+		}
+
+		super._mouseEvent(eventType, e);
 	}
 }

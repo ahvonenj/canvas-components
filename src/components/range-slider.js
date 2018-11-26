@@ -37,4 +37,10 @@ class CCRangeSlider extends Component
 	{
 
 	}
+
+	// Default component event logic
+	_mouseEvent(eventType, e)
+	{
+		super._mouseEvent(eventType, e);
+	}
 }

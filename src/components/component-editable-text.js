@@ -26,11 +26,13 @@ class ComponentEditableText extends Component
 		this.value = '';
 	}
 
+	// Set editable text value
 	SetValue(str)
 	{
 		this.value = str;
 	}
 
+	// Get editable text value
 	GetValue()
 	{
 		return this.value;

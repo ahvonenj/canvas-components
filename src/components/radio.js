@@ -46,4 +46,24 @@ class CCRadioButton extends Component
 		this.ctx.fill();
 		this.ctx.stroke();	
 	}
+
+	// Default component event logic
+	_mouseEvent(eventType, e)
+	{
+		switch(eventType)
+		{
+			case ComponentEvent.MOUSE_OVER:
+				document.body.style.cursor = 'pointer';
+				break;
+
+			case ComponentEvent.MOUSE_OUT:
+				document.body.style.cursor = 'default';
+				break;
+
+			default:
+				break;
+		}
+
+		super._mouseEvent(eventType, e);
+	}
 }

@@ -25,6 +25,7 @@ class CCPanel extends Component
 
 		super(options, ctx, canvas, CanvasComponent.PANEL);
 
+		// Default gradient shading
 		if(this.options.backgroundColor === null)
 		{
 			var gradient = this.ctx.createLinearGradient(
@@ -66,5 +67,11 @@ class CCPanel extends Component
 		this.ctx.closePath();
 		this.ctx.fill();
 		this.ctx.stroke();
+	}
+
+	// Default component event logic
+	_mouseEvent(eventType, e)
+	{
+		super._mouseEvent(eventType, e);
 	}
 }
