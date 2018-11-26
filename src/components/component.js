@@ -74,8 +74,6 @@ class Component
 			// https://galactic.ink/journal/2011/01/html5-typographic-metrics/#bboxUnicode
 			this.ctx.textAlign = "start";
 			this.ctx.textBaseline = "alphabetic";
-			this.ctx.fillStyle = this.options.fontColor;
-			this.ctx.strokeStyle = this.options.fontColor;
 			this.ctx.font = `${this.options.fontSize}px ${this.options.fontFamily}`;
 
 			var w = this.ctx.measureText(this.textContent).width;
