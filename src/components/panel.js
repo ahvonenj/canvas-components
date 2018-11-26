@@ -20,10 +20,25 @@ class CCPanel extends Component
 			fontSize: 8,
 			fontColor: '#000',
 
-			backgroundColor: '#FFF'
+			backgroundColor: null
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.PANEL);
+
+		if(this.options.backgroundColor === null)
+		{
+			var gradient = this.ctx.createLinearGradient(
+				this.options.x + (this.options.width / 2), 
+				this.options.y,
+				this.options.x + (this.options.width / 2),
+				this.options.y + this.options.height
+			);
+
+			gradient.addColorStop(0, 'rgb(244, 244, 244)');
+			gradient.addColorStop(1, 'rgb(241, 241, 241');
+
+			this.options.backgroundColor = gradient;
+		}
 	}
 
 	// Component update method
@@ -35,17 +50,7 @@ class CCPanel extends Component
 	// Component draw method
 	Draw()
 	{
-		var gradient = this.ctx.createLinearGradient(
-			this.options.x + (this.options.width / 2), 
-			this.options.y,
-			this.options.x + (this.options.width / 2),
-			this.options.y + this.options.height
-		);
-
-		gradient.addColorStop(0, 'rgb(244, 244, 244)');
-		gradient.addColorStop(1, 'rgb(241, 241, 241');
-
-		this.ctx.fillStyle = gradient;
+		this.ctx.fillStyle = this.options.backgroundColor;
 		this.ctx.strokeStyle = this.options.borderColor;
 		this.ctx.lineWidth = this.options.borderWidth;
 

@@ -17,10 +17,25 @@ class CCButton extends Component
 			borderWidth: 2,
 			borderColor: '#000',
 
-			backgroundColor: '#353b48'
+			backgroundColor: null
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.BUTTON);
+
+		if(this.options.backgroundColor === null)
+		{
+			var gradient = this.ctx.createLinearGradient(
+				this.options.x + (this.options.width / 2), 
+				this.options.y,
+				this.options.x + (this.options.width / 2),
+				this.options.y + this.options.height
+			);
+
+			gradient.addColorStop(0, 'rgb(244, 244, 244)');
+			gradient.addColorStop(1, 'rgb(241, 241, 241');
+
+			this.options.backgroundColor = gradient;
+		}
 
 		this._componentLabel = new ComponentLabel(
 		{
@@ -43,17 +58,7 @@ class CCButton extends Component
 	// Component draw method
 	Draw()
 	{
-		var gradient = this.ctx.createLinearGradient(
-			this.options.x + (this.options.width / 2), 
-			this.options.y,
-			this.options.x + (this.options.width / 2),
-			this.options.y + this.options.height
-		);
-
-		gradient.addColorStop(0, 'rgb(244, 244, 244)');
-		gradient.addColorStop(1, 'rgb(241, 241, 241');
-
-		this.ctx.fillStyle = gradient;
+		this.ctx.fillStyle = this.options.backgroundColor;
 		this.ctx.strokeStyle = this.options.borderColor;
 		this.ctx.lineWidth = this.options.borderWidth;
 

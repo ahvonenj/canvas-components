@@ -1,3 +1,4 @@
+// List of supported Canvas Component events
 var ComponentEvents =
 [
 	'click',
