@@ -35,27 +35,12 @@ gulp.task('default', ['minify'], function(cb)
 
 });
 
-gulp.task('build', ['minify'], function()
+gulp.task('build', ['build-dev', 'build-dist'], function()
 {
 
 });
 
-gulp.task('watch', function() 
-{
-	livereload.listen(
-	{
-		host: '127.0.0.1',
-		port: 8886
-	});
-
-    watch(js_sources).on('change', function(e) 
-	{
-        gulp.start('minify');
-        livereload.changed(e);
-    });
-});
-
-gulp.task('minify', function()
+gulp.task('build-dist', function()
 {
 	gulp.src(js_sources)
 	.pipe(sourcemaps.init())
@@ -76,5 +61,29 @@ gulp.task('minify', function()
 	}))
 	.pipe(concat('canvas-components.min.js', { newLine: ';' }))
 	.pipe(sourcemaps.write('./'))
-	.pipe(gulp.dest('./build/'))
+	.pipe(gulp.dest('./dist/'))
+});
+
+gulp.task('build-dev', function()
+{
+	gulp.src(js_sources)
+	.pipe(sourcemaps.init())
+	.pipe(concat('canvas-components-dev.js', { newLine: ';' }))
+	.pipe(sourcemaps.write('./'))
+	.pipe(gulp.dest('./test/'))
+});
+
+gulp.task('watch', function() 
+{
+	livereload.listen(
+	{
+		host: '127.0.0.1',
+		port: 8886
+	});
+
+    watch(js_sources).on('change', function(e) 
+	{
+        gulp.start('minify');
+        livereload.changed(e);
+    });
 });

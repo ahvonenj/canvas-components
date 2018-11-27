@@ -39,9 +39,9 @@ class ComponentEditableText extends Component
 	}
 
 	// Component update method
-	Update(dt)
+	Update(dt, mouseState)
 	{
-		
+		//super.Update(dt, mouseState);
 	}
 
 	// Component draw method
@@ -56,5 +56,7 @@ class ComponentEditableText extends Component
 		this.ctx.beginPath();
 		this.ctx.fillText(this.value, this.options.x, this.options.y);
 		this.ctx.closePath();
+
+		super.Draw();
 	}
 }

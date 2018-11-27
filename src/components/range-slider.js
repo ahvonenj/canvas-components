@@ -27,15 +27,15 @@ class CCRangeSlider extends Component
 	}
 
 	// Component update method
-	Update(dt)
+	Update(dt, mouseState)
 	{
-		
+		super.Update(dt, mouseState);
 	}
 
 	// Component draw method
 	Draw()
 	{
-
+		super.Draw();
 	}
 
 	// Default component event logic

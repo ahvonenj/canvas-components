@@ -35,9 +35,9 @@ class CCLabel extends Component
 	}
 
 	// Component update method
-	Update(dt)
+	Update(dt, mouseState)
 	{
-		
+		super.Update(dt, mouseState);
 	}
 
 	// Component draw method
@@ -52,6 +52,8 @@ class CCLabel extends Component
 		this.ctx.beginPath();
 		this.ctx.fillText(this.textContent, this.options.x, this.options.y);
 		this.ctx.closePath();
+
+		super.Draw();
 	}
 
 	// Default component event logic

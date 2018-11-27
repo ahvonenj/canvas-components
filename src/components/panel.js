@@ -43,9 +43,9 @@ class CCPanel extends Component
 	}
 
 	// Component update method
-	Update(dt)
+	Update(dt, mouseState)
 	{
-		
+		super.Update(dt, mouseState);
 	}
 
 	// Component draw method
@@ -65,8 +65,11 @@ class CCPanel extends Component
 		);
 
 		this.ctx.closePath();
+		//this.ctx.clip();
 		this.ctx.fill();
 		this.ctx.stroke();
+
+		super.Draw();
 	}
 
 	// Default component event logic

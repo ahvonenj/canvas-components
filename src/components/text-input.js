@@ -42,9 +42,10 @@ class CCTextInput extends Component
 	}
 
 	// Component update method
-	Update(dt)
+	Update(dt, mouseState)
 	{
 		this._componentText.Update(dt);
+		super.Update(dt, mouseState);
 	}
 
 	// Component draw method
@@ -68,6 +69,7 @@ class CCTextInput extends Component
 		this.ctx.stroke();
 
 		this._componentText.Draw();
+		super.Draw();
 	}
 
 	// Default component event logic

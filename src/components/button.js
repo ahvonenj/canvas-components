@@ -59,9 +59,11 @@ class CCButton extends Component
 	}
 
 	// Component update method
-	Update(dt)
+	Update(dt, mouseState)
 	{
 		this._componentLabel.Update(dt);
+
+		super.Update(dt, mouseState);
 	}
 
 	// Component draw method
@@ -85,6 +87,7 @@ class CCButton extends Component
 		this.ctx.stroke();
 
 		this._componentLabel.Draw();
+		super.Draw();
 	}
 
 	// Default component event logic

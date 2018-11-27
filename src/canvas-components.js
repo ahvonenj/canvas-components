@@ -50,6 +50,24 @@ class ComponentCanvas
 		this.canvas.addEventListener('mousemove', this.e_mouseMove.bind(this));
 		this.canvas.addEventListener('scroll', this.e_mouseScroll.bind(this));
 
+		// Event related attributes
+		this.mouseState = 
+		{
+			lx: -99999,		// Mouse last x
+			ly: -99999,		// Mouse last y
+			x: -99999,		// Mouse x
+			y: -99999,		// Mouse y
+			dx: -99999,		// Mouse delta x
+			dy: -99999,		// Mouse delta y
+
+			isDown: false,
+
+			downStartTime: 0,
+			downElapsedTime: 0
+		};
+
+		this.componentsDragged = null;
+
 		// Start main update and draw loop
 		this.Loop();
 	}
@@ -178,19 +196,35 @@ class ComponentCanvas
 				continue;
 
 			this.CanvasComponentCollection.collection[component].Draw();
-			this.CanvasComponentCollection.collection[component]._drawFocus();
 		}
 	}
 
 	// Main component update method and loop
 	Update(dt)
 	{
+		if(this.mouseState.isDown)
+		{
+			this.mouseState.downElapsedTime = this.t.time - this.mouseState.downStartTime;
+
+			if(this.mouseState.downElapsedTime > 5)
+			{
+				// Get all components under mouse click coordinates
+				this.componentsDragged = this.CanvasComponentCollection.GetComponentsAtPoint(this.mouseState.x, this.mouseState.y);
+
+				// Set focus of every component to false
+				this.componentsDragged.forEach(function(component)
+				{
+					component.isDragged = true;
+				});
+			}
+		}
+
 		for(var component in this.CanvasComponentCollection.collection)
 		{
 			if(!this.CanvasComponentCollection.collection.hasOwnProperty(component))
 				continue;
 
-			this.CanvasComponentCollection.collection[component].Update(dt);
+			this.CanvasComponentCollection.collection[component].Update(dt, this.mouseState);
 		}
 	}
 
@@ -222,13 +256,19 @@ class ComponentCanvas
 	// Mouse down event handler
 	e_mouseDown(e)
 	{
-		
+		this.mouseState.isDown = true;
+		this.mouseState.downStartTime = this.t.time;
 	}
 
 	// Mouse up event handler
 	e_mouseUp(e)
 	{
-		
+		this.mouseState.isDown = false;
+
+		this.componentsDragged.forEach(function(component)
+		{
+			component.isDragged = false;
+		});
 	}
 
 	// Mouse enter event handler
@@ -258,6 +298,13 @@ class ComponentCanvas
 	// Mouse move event handler
 	e_mouseMove(e)
 	{
+		this.mouseState.lx = this.mouseState.x;
+		this.mouseState.ly = this.mouseState.y;
+		this.mouseState.x = e.clientX;
+		this.mouseState.y = e.clientY;
+		this.mouseState.dx = this.mouseState.x - this.mouseState.lx;
+		this.mouseState.dy = this.mouseState.y - this.mouseState.ly;
+
 		// Should probably move this to Update loop
 		this.CanvasComponentCollection.GetComponents().forEach(function(component)
 		{

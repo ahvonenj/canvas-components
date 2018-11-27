@@ -26,9 +26,9 @@ class CCRadioButton extends Component
 	}
 
 	// Component update method
-	Update(dt)
+	Update(dt, mouseState)
 	{
-		
+		super.Update(dt, mouseState);
 	}
 
 	// Component draw method
@@ -44,7 +44,9 @@ class CCRadioButton extends Component
 
 		this.ctx.closePath();
 		this.ctx.fill();
-		this.ctx.stroke();	
+		this.ctx.stroke();
+
+		super.Draw();
 	}
 
 	// Default component event logic

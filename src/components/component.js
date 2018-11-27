@@ -23,6 +23,7 @@ class Component
 		// Events related attributes
 		this.hasFocus = false;
 		this.isMouseOver = false;
+		this.isDragged = false;
 
 		// Custom events bound to the component
 		this.mouseEvents = { };
@@ -117,26 +118,42 @@ class Component
 	// Debug method. Draws a magenta bounding box border around a component when it has focus
 	_drawFocus()
 	{
-		if(!this.hasFocus)
-			return;
+		
+	}
 
-		this.ctx.strokeStyle = 'magenta';
-		this.ctx.fillStyle = 'magenta';
-		this.ctx.lineWidth = 2;
+	// Component draw function
+	Draw()
+	{
+		if(this.hasFocus)
+		{
+			this.ctx.strokeStyle = 'magenta';
+			this.ctx.fillStyle = 'magenta';
+			this.ctx.lineWidth = 2;
 
-		var bb = this._getBoundingBox();
+			var bb = this._getBoundingBox();
 
-		this.ctx.beginPath();
+			this.ctx.beginPath();
 
-		this.ctx.rect(
-			bb.x - 3, 
-			bb.y - 3, 
-			bb.w + 6, 
-			bb.h + 6
-		);
+			this.ctx.rect(
+				bb.x - 3, 
+				bb.y - 3, 
+				bb.w + 6, 
+				bb.h + 6
+			);
 
-		this.ctx.closePath();
-		this.ctx.stroke();
+			this.ctx.closePath();
+			this.ctx.stroke();
+		}
+	}
+
+	// Component update function
+	Update(dt, mouseState)
+	{
+		if(this.isDragged)
+		{
+			this.options.x = mouseState.x;
+			this.options.y = mouseState.y;
+		}
 	}
 
 	// Component destroy method
