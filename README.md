@@ -32,6 +32,11 @@ Aiming for easy extendability and ease-of-use.
 - [x] Event enumeration
 - [x] Meta components / Subcomponents (component-component compositions)
 - [x] Destroy / Remove / Delete components
+- [ ] Loader component
+- [ ] Viewport resize handling
+- [ ] Mobile support
+- [ ] Touch support
+- [ ] Clipping / scrolling & scrollbars
 - [x] Mouse event: click
 - [ ] Mouse event: dblclick
 - [ ] Mouse event: mousedown
