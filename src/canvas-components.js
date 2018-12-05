@@ -250,6 +250,8 @@ class ComponentCanvas
 	// Click event handler
 	e_onClick(e)
 	{
+		var self = this;
+
 		// Get all components under mouse click coordinates
 		var components = this.CanvasComponentCollection.GetComponentsAtPoint(e.clientX, e.clientY);
 
@@ -262,6 +264,15 @@ class ComponentCanvas
 		// Call the click events of all components returned by GetComponentsAtPoint
 		components.forEach(function(component)
 		{
+			if(component.ComponentType === CanvasComponent.RADIO)
+			{
+				self.CanvasComponentCollection.GetComponentsOfType(CanvasComponent.RADIO).forEach(function(radio)
+				{
+					if(radio.GetGroup() === component.GetGroup())
+						radio.SetState(false);
+				});
+			}
+
 			component._mouseEvent(ComponentEvent.CLICK, e);
 		});
 	}

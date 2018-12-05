@@ -119,5 +119,10 @@ class CanvasComponentCollection
 	{
 		return Object.values(this.collection);
 	}
+
+	GetComponentsOfType(componentType)
+	{
+		return Object.values(this.collection).filter(component => component.ComponentType === componentType);
+	}
 }
 

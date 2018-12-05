@@ -39,42 +39,65 @@
 				// Meta component, skip
 				if(CanvasComponent[type] >= 1000)
 					continue;
-
-				var component = componentCanvas.CreateComponent(CanvasComponent[type], 
-				{ 
-					x: x,
-					y: y,
-					z: z,
-				});
-
-				/*component.on('click', function(e)
+				if(CanvasComponent[type] === CanvasComponent.RADIO)
 				{
-					if(this.options.backgroundColor !== 'red')
-						this.options.backgroundColor = 'red';
-					else
-						this.options.backgroundColor = 'blue';
+					var component = componentCanvas.CreateComponent(CanvasComponent[type], 
+					{ 
+						x: x,
+						y: y,
+						z: z
+					});
 
-					if(this.options.fontColor !== 'red')
-						this.options.fontColor = 'red';
-					else
-						this.options.fontColor = 'blue';
-				});*/
+					y += component._getBoundingBox().h + 50;
+					z += 50;
 
-				if(CanvasComponent[type] === CanvasComponent.BUTTON)
-				{
-					component.SetText('Test Button 1');
+					var component = componentCanvas.CreateComponent(CanvasComponent[type], 
+					{ 
+						x: x,
+						y: y,
+						z: z
+					});
+
+					y += component._getBoundingBox().h + 50;
+					z += 50;
+
+					var component = componentCanvas.CreateComponent(CanvasComponent[type], 
+					{ 
+						x: x,
+						y: y,
+						z: z
+					});
+
+					component.SetGroup(1);
+
+					y += component._getBoundingBox().h + 50;
+					z += 50;
 				}
-				else if(CanvasComponent[type] === CanvasComponent.LABEL)
+				else
 				{
-					component.SetText('Test Label 1');
-				}
-				else if(CanvasComponent[type] === CanvasComponent.TEXT_INPUT)
-				{
-					component.SetValue('Test Input 1');
-				}
+					var component = componentCanvas.CreateComponent(CanvasComponent[type], 
+					{ 
+						x: x,
+						y: y,
+						z: z
+					});
 
-				y += component._getBoundingBox().h + 50;
-				z += 50;
+					if(CanvasComponent[type] === CanvasComponent.BUTTON)
+					{
+						component.SetText('Test Button 1');
+					}
+					else if(CanvasComponent[type] === CanvasComponent.LABEL)
+					{
+						component.SetText('Test Label 1');
+					}
+					else if(CanvasComponent[type] === CanvasComponent.TEXT_INPUT)
+					{
+						component.SetValue('Test Input 1');
+					}
+
+					y += component._getBoundingBox().h + 50;
+					z += 50;
+				}
 			}
 		</script>
 	</body>

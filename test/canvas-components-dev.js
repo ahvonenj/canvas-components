@@ -182,6 +182,11 @@ class CanvasComponentCollection
 	{
 		return Object.values(this.collection);
 	}
+
+	GetComponentsOfType(componentType)
+	{
+		return Object.values(this.collection).filter(component => component.ComponentType === componentType);
+	}
 }
 
 ;// Component enumeration for each available Canvas Component
@@ -664,10 +669,39 @@ class CCRadioButton extends Component
 			fontSize: 8,
 			fontColor: '#000',
 
-			backgroundColor: '#FFF'
+			backgroundColor: '#FFF',
+			checkColor: '#000'
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.RADIO);
+
+		this.group = 0;
+		this.state = false;
+	}
+
+	SetGroup(group)
+	{
+		this.group = group || null;
+	}
+
+	GetGroup()
+	{
+		return this.group;
+	}
+
+	SetState(state)
+	{
+		this.state = state || false;
+	}
+
+	SwitchState()
+	{
+		this.state = !this.state;
+	}
+
+	GetState()
+	{
+		return this.state;
 	}
 
 	// Component update method
@@ -691,6 +725,21 @@ class CCRadioButton extends Component
 		this.ctx.fill();
 		this.ctx.stroke();
 
+		if(this.state)
+		{
+			this.ctx.fillStyle = this.options.checkColor;
+			this.ctx.strokeStyle = this.options.checkColor;
+			this.ctx.lineWidth = this.options.borderWidth;
+
+			this.ctx.beginPath();
+
+			this.ctx.arc(this.options.x, this.options.y, this.options.radius / 3, 0, 2 * Math.PI);
+
+			this.ctx.closePath();
+			this.ctx.fill();
+			this.ctx.stroke();
+		}
+
 		super.Draw();
 	}
 
@@ -705,6 +754,10 @@ class CCRadioButton extends Component
 
 			case ComponentEvent.MOUSE_OUT:
 				document.body.style.cursor = 'default';
+				break;
+
+			case ComponentEvent.CLICK:
+				this.SwitchState();
 				break;
 
 			default:
@@ -1337,6 +1390,8 @@ class ComponentCanvas
 	// Click event handler
 	e_onClick(e)
 	{
+		var self = this;
+
 		// Get all components under mouse click coordinates
 		var components = this.CanvasComponentCollection.GetComponentsAtPoint(e.clientX, e.clientY);
 
@@ -1349,6 +1404,15 @@ class ComponentCanvas
 		// Call the click events of all components returned by GetComponentsAtPoint
 		components.forEach(function(component)
 		{
+			if(component.ComponentType === CanvasComponent.RADIO)
+			{
+				self.CanvasComponentCollection.GetComponentsOfType(CanvasComponent.RADIO).forEach(function(radio)
+				{
+					if(radio.GetGroup() === component.GetGroup())
+						radio.SetState(false);
+				});
+			}
+
 			component._mouseEvent(ComponentEvent.CLICK, e);
 		});
 	}
