@@ -47,8 +47,10 @@ class ComponentEditableText extends Component
 	}
 
 	// Component draw method
-	Draw()
+	Draw(parentOptions)
 	{
+		parentOptions = parentOptions || { padding: { left: 0 } };
+
 		this.ctx.textAlign = "start";
 		this.ctx.textBaseline = "middle";
 		this.ctx.fillStyle = this.options.fontColor;
@@ -56,7 +58,7 @@ class ComponentEditableText extends Component
 		this.ctx.font = `${this.options.fontSize}px ${this.options.fontFamily}`;
 
 		this.ctx.beginPath();
-		this.ctx.fillText(this.value, this.options.x, this.options.y);
+		this.ctx.fillText(this.value, this.options.x + parentOptions.padding.left, this.options.y);
 		this.ctx.closePath();
 
 		super.Draw();

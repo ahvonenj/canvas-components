@@ -24,7 +24,7 @@ class CCTextInput extends Component
 				top: 0,
 				right: 0,
 				bottom: 0,
-				left: 0
+				left: 5
 			},
 
 			margin:
@@ -84,7 +84,7 @@ class CCTextInput extends Component
 		this.ctx.fill();
 		this.ctx.stroke();
 
-		this._componentText.Draw();
+		this._componentText.Draw(this.options);
 		super.Draw();
 	}
 

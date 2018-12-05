@@ -402,7 +402,23 @@ class CCButton extends Component
 			borderWidth: 2,
 			borderColor: '#000',
 
-			backgroundColor: null
+			backgroundColor: null,
+
+			padding:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			},
+
+			margin:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			}
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.BUTTON);
@@ -516,7 +532,23 @@ class CCCheckbox extends Component
 			fontColor: '#000',
 
 			backgroundColor: '#FFF',
-			checkColor: '#000'
+			checkColor: '#000',
+
+			padding:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			},
+
+			margin:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			}
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.CHECKBOX);
@@ -647,7 +679,23 @@ class CCPanel extends Component
 			fontSize: 8,
 			fontColor: '#000',
 
-			backgroundColor: null
+			backgroundColor: null,
+
+			padding:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			},
+
+			margin:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			}
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.PANEL);
@@ -726,7 +774,23 @@ class CCRadioButton extends Component
 			fontColor: '#000',
 
 			backgroundColor: '#FFF',
-			checkColor: '#000'
+			checkColor: '#000',
+
+			padding:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			},
+
+			margin:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			}
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.RADIO);
@@ -841,7 +905,23 @@ class CCTextInput extends Component
 			borderWidth: 2,
 			borderColor: '#000',
 
-			backgroundColor: '#FFF'
+			backgroundColor: '#FFF',
+
+			padding:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 5
+			},
+
+			margin:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			}
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.TEXT_INPUT);
@@ -892,7 +972,7 @@ class CCTextInput extends Component
 		this.ctx.fill();
 		this.ctx.stroke();
 
-		this._componentText.Draw();
+		this._componentText.Draw(this.options);
 		super.Draw();
 	}
 
@@ -938,7 +1018,23 @@ class CCLabel extends Component
 			fontColor: '#000',
 			fontFamily: 'Arial',
 
-			backgroundColor: '#FFF'
+			backgroundColor: '#FFF',
+
+			padding:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			},
+
+			margin:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			}
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.LABEL);
@@ -1000,7 +1096,23 @@ class CCRangeSlider extends Component
 			fontSize: 8,
 			fontColor: '#000',
 
-			backgroundColor: '#FFF'
+			backgroundColor: '#FFF',
+
+			padding:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			},
+
+			margin:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			}
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.RANGE_SLIDER);
@@ -1045,7 +1157,23 @@ class CCProgressBar extends Component
 			fontSize: 8,
 			fontColor: '#000',
 
-			backgroundColor: '#FFF'
+			backgroundColor: '#FFF',
+
+			padding:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			},
+
+			margin:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			}
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.PROGRESS_BAR);
@@ -1084,7 +1212,23 @@ class ComponentLabel extends Component
 
 			fontSize: 12,
 			fontColor: '#000',
-			fontFamily: 'Arial'
+			fontFamily: 'Arial',
+
+			padding:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			},
+
+			margin:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			}
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.COMPONENT_LABEL);
@@ -1180,8 +1324,10 @@ class ComponentEditableText extends Component
 	}
 
 	// Component draw method
-	Draw()
+	Draw(parentOptions)
 	{
+		parentOptions = parentOptions || { padding: { left: 0 } };
+
 		this.ctx.textAlign = "start";
 		this.ctx.textBaseline = "middle";
 		this.ctx.fillStyle = this.options.fontColor;
@@ -1189,7 +1335,7 @@ class ComponentEditableText extends Component
 		this.ctx.font = `${this.options.fontSize}px ${this.options.fontFamily}`;
 
 		this.ctx.beginPath();
-		this.ctx.fillText(this.value, this.options.x, this.options.y);
+		this.ctx.fillText(this.value, this.options.x + parentOptions.padding.left, this.options.y);
 		this.ctx.closePath();
 
 		super.Draw();
