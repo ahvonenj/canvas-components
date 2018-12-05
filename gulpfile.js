@@ -30,7 +30,7 @@ const js_sources =
 	'./src/canvas-components.js'
 ];
 
-gulp.task('default', ['minify'], function(cb) 
+gulp.task('default', ['build-dev'], function(cb) 
 {
 
 });

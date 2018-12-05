@@ -5,18 +5,26 @@
 
 		<link rel="stylesheet" type="text/css" href="index.css">
 
+		<script src = "../lib/stats.min.js"></script>
 		<script src = "canvas-components-dev.js"></script>
 	</head>
 	<body>
 		<canvas id="test-canvas"></canvas>
 
 		<script>
+			// Setup fps stats
+			var stats = new Stats();
+			stats.showPanel(0);
+			document.body.appendChild(stats.dom);
+			stats.dom.style.left = 'auto';
+			stats.dom.style.right = '0px';
+
 			// Setup canvas
 			document.querySelector('#test-canvas').width = document.body.clientWidth;
 			document.querySelector('#test-canvas').height = document.body.clientHeight;
 
 			// Instantiate ComponentCanvas
-			var componentCanvas = new ComponentCanvas('#test-canvas');
+			var componentCanvas = new ComponentCanvas('#test-canvas', stats);
 
 			var x = 50;
 			var y = 50;

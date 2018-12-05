@@ -44,7 +44,7 @@ class CCTextInput extends Component
 	// Component update method
 	Update(dt, mouseState)
 	{
-		this._componentText.Update(dt);
+		this._componentText.Update(dt, mouseState, this.options);
 		super.Update(dt, mouseState);
 	}
 

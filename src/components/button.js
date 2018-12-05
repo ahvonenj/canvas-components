@@ -61,8 +61,7 @@ class CCButton extends Component
 	// Component update method
 	Update(dt, mouseState)
 	{
-		this._componentLabel.Update(dt);
-
+		this._componentLabel.Update(dt, mouseState, this.options);
 		super.Update(dt, mouseState);
 	}
 

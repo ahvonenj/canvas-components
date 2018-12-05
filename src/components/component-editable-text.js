@@ -39,9 +39,11 @@ class ComponentEditableText extends Component
 	}
 
 	// Component update method
-	Update(dt, mouseState)
+	Update(dt, mouseState, parentOptions)
 	{
 		//super.Update(dt, mouseState);
+		this.options.x = parentOptions.x;
+		this.options.y = parentOptions.y + (parentOptions.height / 2);
 	}
 
 	// Component draw method

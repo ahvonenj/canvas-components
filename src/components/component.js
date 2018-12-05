@@ -24,6 +24,8 @@ class Component
 		this.hasFocus = false;
 		this.isMouseOver = false;
 		this.isDragged = false;
+		this.relativeMouseX = -99999;
+		this.relativeMouseY = -99999;
 
 		// Custom events bound to the component
 		this.mouseEvents = { };
@@ -151,8 +153,8 @@ class Component
 	{
 		if(this.isDragged)
 		{
-			this.options.x = mouseState.x;
-			this.options.y = mouseState.y;
+			this.options.x = mouseState.x - this.relativeMouseX;
+			this.options.y = mouseState.y - this.relativeMouseY;
 		}
 	}
 

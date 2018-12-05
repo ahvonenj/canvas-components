@@ -239,6 +239,8 @@ class Component
 		this.hasFocus = false;
 		this.isMouseOver = false;
 		this.isDragged = false;
+		this.relativeMouseX = -99999;
+		this.relativeMouseY = -99999;
 
 		// Custom events bound to the component
 		this.mouseEvents = { };
@@ -366,8 +368,8 @@ class Component
 	{
 		if(this.isDragged)
 		{
-			this.options.x = mouseState.x;
-			this.options.y = mouseState.y;
+			this.options.x = mouseState.x - this.relativeMouseX;
+			this.options.y = mouseState.y - this.relativeMouseY;
 		}
 	}
 
@@ -439,8 +441,7 @@ class CCButton extends Component
 	// Component update method
 	Update(dt, mouseState)
 	{
-		this._componentLabel.Update(dt);
-
+		this._componentLabel.Update(dt, mouseState, this.options);
 		super.Update(dt, mouseState);
 	}
 
@@ -758,7 +759,7 @@ class CCTextInput extends Component
 	// Component update method
 	Update(dt, mouseState)
 	{
-		this._componentText.Update(dt);
+		this._componentText.Update(dt, mouseState, this.options);
 		super.Update(dt, mouseState);
 	}
 
@@ -999,9 +1000,11 @@ class ComponentLabel extends Component
 	}
 
 	// Component update method
-	Update(dt, mouseState)
+	Update(dt, mouseState, parentOptions)
 	{
 		//super.Update(dt, mouseState);
+		this.options.x = parentOptions.x + (parentOptions.width / 2),
+		this.options.y = parentOptions.y + (parentOptions.height / 2)
 	}
 
 	// Component draw method
@@ -1060,9 +1063,11 @@ class ComponentEditableText extends Component
 	}
 
 	// Component update method
-	Update(dt, mouseState)
+	Update(dt, mouseState, parentOptions)
 	{
 		//super.Update(dt, mouseState);
+		this.options.x = parentOptions.x;
+		this.options.y = parentOptions.y + (parentOptions.height / 2);
 	}
 
 	// Component draw method
@@ -1083,7 +1088,7 @@ class ComponentEditableText extends Component
 };// Main class for Canvas Components
 class ComponentCanvas
 {
-	constructor(canvasselector)
+	constructor(canvasselector, stats)
 	{
 		if(CCUtil.IsUndefinedNullOrEmpty(canvasselector))
 		{
@@ -1098,6 +1103,9 @@ class ComponentCanvas
 			console.error('ComponentCanvas: Could not get canvas ' + this.canvasselector);
 			return;
 		}
+
+		//Fps counter
+		this.stats = stats || null;
 
 		// Canvas attributes
 		this.canvas = document.querySelector(this.canvasselector);
@@ -1141,14 +1149,17 @@ class ComponentCanvas
 			y: -99999,		// Mouse y
 			dx: -99999,		// Mouse delta x
 			dy: -99999,		// Mouse delta y
+			ldx: -99999,	// Last down x
+			ldy: -99999,	// Last down y
 
 			isDown: false,
 
 			downStartTime: 0,
-			downElapsedTime: 0
+			downElapsedTime: 0,
+			dragEventFired: false
 		};
 
-		this.componentsDragged = null;
+		this.componentsDragged = [];
 
 		// Start main update and draw loop
 		this.Loop();
@@ -1244,6 +1255,9 @@ class ComponentCanvas
 	// Actually the main loop
 	Loop()
 	{
+		// Begin fps measurement
+		this.stats.begin();	
+
 		this.t.now = CCUtil.Timestamp();
 		this.t.ft = this.t.now - this.t.last;
 
@@ -1262,6 +1276,10 @@ class ComponentCanvas
 		}
 
 		this.Draw();
+
+		// End fps measurement
+		this.stats.end();
+
 		requestAnimationFrame(function() { this.Loop(); }.bind(this));
 	}
 
@@ -1284,12 +1302,16 @@ class ComponentCanvas
 	// Main component update method and loop
 	Update(dt)
 	{
+		var self = this;
+
 		if(this.mouseState.isDown)
 		{
 			this.mouseState.downElapsedTime = this.t.time - this.mouseState.downStartTime;
 
-			if(this.mouseState.downElapsedTime > 5)
+			if(this.mouseState.downElapsedTime > 5 && !this.mouseState.dragEventFired)
 			{
+				this.mouseState.dragEventFired = true;
+
 				// Get all components under mouse click coordinates
 				this.componentsDragged = this.CanvasComponentCollection.GetComponentsAtPoint(this.mouseState.x, this.mouseState.y);
 
@@ -1297,6 +1319,8 @@ class ComponentCanvas
 				this.componentsDragged.forEach(function(component)
 				{
 					component.isDragged = true;
+					component.relativeMouseX = self.mouseState.x - component.options.x;
+					component.relativeMouseY = self.mouseState.y - component.options.y;
 				});
 			}
 		}
@@ -1340,12 +1364,15 @@ class ComponentCanvas
 	{
 		this.mouseState.isDown = true;
 		this.mouseState.downStartTime = this.t.time;
+		this.mouseState.ldx = e.clientX;
+		this.mouseState.ldy = e.clientY;
 	}
 
 	// Mouse up event handler
 	e_mouseUp(e)
 	{
 		this.mouseState.isDown = false;
+		this.mouseState.dragEventFired = false;
 
 		this.componentsDragged.forEach(function(component)
 		{
