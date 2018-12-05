@@ -21,7 +21,23 @@ class CCCheckbox extends Component
 			fontColor: '#000',
 
 			backgroundColor: '#FFF',
-			checkColor: '#000'
+			checkColor: '#000',
+
+			padding:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			},
+
+			margin:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			}
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.CHECKBOX);

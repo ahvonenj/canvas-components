@@ -17,7 +17,23 @@ class CCButton extends Component
 			borderWidth: 2,
 			borderColor: '#000',
 
-			backgroundColor: null
+			backgroundColor: null,
+
+			padding:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			},
+
+			margin:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			}
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.BUTTON);

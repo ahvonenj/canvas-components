@@ -14,7 +14,23 @@ class ComponentLabel extends Component
 
 			fontSize: 12,
 			fontColor: '#000',
-			fontFamily: 'Arial'
+			fontFamily: 'Arial',
+
+			padding:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			},
+
+			margin:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			}
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.COMPONENT_LABEL);
