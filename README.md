@@ -67,6 +67,7 @@ Aiming for easy extendability and ease-of-use.
 - [ ] Optimize drawing
 - [ ] Optimize event handling
 - [ ] Optimize update logic
+- [ ] See if optimizations can be made to z-indexing. Currently we might be essentially doubling the runtime memory usage because we have to maintain two separate collections of components
 
 ## Performance
 
