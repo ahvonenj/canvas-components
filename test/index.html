@@ -44,42 +44,35 @@
 					var component = componentCanvas.CreateComponent(CanvasComponent[type], 
 					{ 
 						x: x,
-						y: y,
-						z: z
+						y: y
 					});
 
 					y += component._getBoundingBox().h + 50;
-					z += 50;
 
 					var component = componentCanvas.CreateComponent(CanvasComponent[type], 
 					{ 
 						x: x,
-						y: y,
-						z: z
+						y: y
 					});
 
 					y += component._getBoundingBox().h + 50;
-					z += 50;
 
 					var component = componentCanvas.CreateComponent(CanvasComponent[type], 
 					{ 
 						x: x,
-						y: y,
-						z: z
+						y: y
 					});
 
 					component.SetGroup(1);
 
 					y += component._getBoundingBox().h + 50;
-					z += 50;
 				}
 				else
 				{
 					var component = componentCanvas.CreateComponent(CanvasComponent[type], 
 					{ 
 						x: x,
-						y: y,
-						z: z
+						y: y
 					});
 
 					if(CanvasComponent[type] === CanvasComponent.BUTTON)
@@ -96,7 +89,6 @@
 					}
 
 					y += component._getBoundingBox().h + 50;
-					z += 50;
 				}
 			}
 		</script>

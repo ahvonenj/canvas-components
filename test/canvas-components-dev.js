@@ -67,6 +67,32 @@ class CanvasComponentCollection
 	constructor()
 	{
 		this.collection = {};
+		this.orderedCollection = [];
+	}
+
+	_addOrderedComponent(component)
+	{
+		this.orderedCollection.push(component);
+
+		this.orderedCollection.sort(function(componentA, componentB)
+		{
+			if(componentA.options.z < componentB.options.z)
+				return -1;
+
+			if(componentA.options.z > componentB.options.z)
+				return 1;
+
+			return 0;
+		});
+	}
+
+	_removeOrderedComponent(component)
+	{
+		for(var i = 0; i < this.orderedCollection.length; i++)
+		{
+			if(this.orderedCollection[i].id === component.id)
+				this.orderedCollection.splice(i, 1);
+		}
 	}
 	
 	// Add component to the collection
@@ -81,6 +107,7 @@ class CanvasComponentCollection
 		if(typeof this.collection[component.id] === 'undefined')
 		{
 			this.collection[component.id] = component;
+			this._addOrderedComponent(component)
 			return true;
 		}
 		else
@@ -100,6 +127,7 @@ class CanvasComponentCollection
 		{
 			this.collection[component.id].Destroy();
 			delete this.collection[component.id];
+			this._removeOrderedComponent(component);
 
 			return true;
 		}
@@ -397,7 +425,7 @@ class CCButton extends Component
 			height: 28,
 			x: 0,
 			y: 0,
-			z: 0,
+			z: 1,
 
 			borderWidth: 2,
 			borderColor: '#000',
@@ -1475,33 +1503,6 @@ class ComponentCanvas
 		return this.AddComponent(component);
 	}
 
-	// Higher level method to add component into the CanvasComponentCollection
-	AddComponent(component)
-	{
-		if(this.CanvasComponentCollection.AddComponent(component))
-			return component;
-		else
-			return null;
-	}
-
-	// Higher level method to remove component from the CanvasComponentCollection
-	RemoveComponent(component)
-	{
-		return this.CanvasComponentCollection.RemoveComponent(component);
-	}
-
-	// Higher level method to find a component from the CanvasComponentCollection
-	FindComponent(component)
-	{
-		return this.CanvasComponentCollection.FindComponent(component);
-	}
-
-	// Higher level method to find a component by unique id from the CanvasComponentCollection
-	FindComponentById(id)
-	{
-		return this.CanvasComponentCollection.FindComponentById(component);
-	}
-
 	GetContext()
 	{
 		return this.ctx;
@@ -1545,12 +1546,9 @@ class ComponentCanvas
 		this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
 
 		// Draw everything
-		for(var component in this.CanvasComponentCollection.collection)
+		for(var i = 0; i < this.CanvasComponentCollection.orderedCollection.length; i++)
 		{
-			if(!this.CanvasComponentCollection.collection.hasOwnProperty(component))
-				continue;
-
-			this.CanvasComponentCollection.collection[component].Draw();
+			this.CanvasComponentCollection.orderedCollection[i].Draw();
 		}
 	}
 
@@ -1568,7 +1566,7 @@ class ComponentCanvas
 				this.mouseState.dragEventFired = true;
 
 				// Get all components under mouse click coordinates
-				this.componentsDragged = this.CanvasComponentCollection.GetComponentsAtPoint(this.mouseState.x, this.mouseState.y);
+				this.componentsDragged = this.GetComponentsAtPoint(this.mouseState.x, this.mouseState.y);
 
 				// Set focus of every component to false
 				this.componentsDragged.forEach(function(component)
@@ -1595,10 +1593,10 @@ class ComponentCanvas
 		var self = this;
 
 		// Get all components under mouse click coordinates
-		var components = this.CanvasComponentCollection.GetComponentsAtPoint(e.clientX, e.clientY);
+		var components = this.GetComponentsAtPoint(e.clientX, e.clientY);
 
 		// Set focus of every component to false
-		this.CanvasComponentCollection.GetComponents().forEach(function(component)
+		this.GetComponents().forEach(function(component)
 		{
 			component.hasFocus = false;
 		});
@@ -1608,7 +1606,7 @@ class ComponentCanvas
 		{
 			if(component.ComponentType === CanvasComponent.RADIO)
 			{
-				self.CanvasComponentCollection.GetComponentsOfType(CanvasComponent.RADIO).forEach(function(radio)
+				self.GetComponentsOfType(CanvasComponent.RADIO).forEach(function(radio)
 				{
 					if(radio.GetGroup() === component.GetGroup())
 						radio.SetState(false);
@@ -1681,7 +1679,7 @@ class ComponentCanvas
 		this.mouseState.dy = this.mouseState.y - this.mouseState.ly;
 
 		// Should probably move this to Update loop
-		this.CanvasComponentCollection.GetComponents().forEach(function(component)
+		this.GetComponents().forEach(function(component)
 		{
 			if(CCUtil.Collides(component._getBoundingBox(), e.clientX, e.clientY))
 			{
@@ -1700,6 +1698,52 @@ class ComponentCanvas
 	e_mouseScroll(e)
 	{
 		
+	}
+
+	// Top level CanvasComponentCollection methods
+
+	// Add component to the collection
+	AddComponent(component)
+	{
+		if(this.CanvasComponentCollection.AddComponent(component))
+			return component;
+		else
+			return null;
+	}
+
+	// Remove component from the collection
+	RemoveComponent(component)
+	{
+		return this.CanvasComponentCollection.RemoveComponent(component);
+	}
+
+	// Find component in the collection by component
+	FindComponent(component)
+	{
+		return this.CanvasComponentCollection.FindComponent(component);
+	}
+
+	// Find component in the collection by a component unique id
+	FindComponentById(id)
+	{
+		return this.CanvasComponentCollection.FindComponentById(id);
+	}
+
+	// Returns all components whose bounding box collide with given x, y
+	GetComponentsAtPoint(x, y)
+	{
+		return this.CanvasComponentCollection.GetComponentsAtPoint(x, y);
+	}
+
+	// Returns all components
+	GetComponents()
+	{
+		return this.CanvasComponentCollection.GetComponents();
+	}
+
+	GetComponentsOfType(componentType)
+	{
+		return this.CanvasComponentCollection.GetComponentsOfType(componentType);
 	}
 }
 //# sourceMappingURL=canvas-components-dev.js.map

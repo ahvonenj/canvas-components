@@ -12,7 +12,7 @@ class CCButton extends Component
 			height: 28,
 			x: 0,
 			y: 0,
-			z: 0,
+			z: 1,
 
 			borderWidth: 2,
 			borderColor: '#000',
