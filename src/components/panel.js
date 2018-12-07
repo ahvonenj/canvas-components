@@ -8,8 +8,8 @@ class CCPanel extends Component
 	{
 		options = Object.assign(
 		{ 
-			width: 150, 
-			height: 150,
+			width: 300, 
+			height: 350,
 			x: 0,
 			y: 0,
 			z: 0,
@@ -81,9 +81,13 @@ class CCPanel extends Component
 		);
 
 		this.ctx.closePath();
-		//this.ctx.clip();
 		this.ctx.fill();
 		this.ctx.stroke();
+
+		// This might work later for overflow / scrolling
+		//this.ctx.save();
+		//this.ctx.clip();
+		//this.ctx.restore();
 
 		super.Draw();
 	}
