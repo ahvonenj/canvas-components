@@ -50,7 +50,8 @@ Aiming for easy extendability and ease-of-use.
 
 ## Todo 2
 
-- [ ] Implement component z-indexing or layers. Draw components in the right order.
+- [x] Implement component z-indexing or layers. Draw components in the right order.
+- [ ] Implement runtime reordering of components for rendering, if component z-indexes change
 
 ## Project related
 
@@ -66,3 +67,9 @@ Aiming for easy extendability and ease-of-use.
 - [ ] Optimize drawing
 - [ ] Optimize event handling
 - [ ] Optimize update logic
+
+## Performance
+
+### 7.12.2018
+
+Supports over 1500 simultaneous components at once, at 60fps.
