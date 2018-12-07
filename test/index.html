@@ -26,69 +26,105 @@
 			// Instantiate ComponentCanvas
 			var componentCanvas = new ComponentCanvas('#test-canvas', stats);
 
-			var x = 50;
-			var y = 50;
-			var z = 0;
+			RegularTest();
+			//StressTest(CanvasComponent.BUTTON, 500);
 
-			// Create test components
-			for(var type in CanvasComponent)
+			// Tests
+			function RegularTest()
 			{
-				if(!CanvasComponent.hasOwnProperty(type))
-					continue;
+				var x = 50;
+				var y = 50;
+				var z = 0;
 
-				// Meta component, skip
-				if(CanvasComponent[type] >= 1000)
-					continue;
-				if(CanvasComponent[type] === CanvasComponent.RADIO)
+				// Create test components
+				for(var type in CanvasComponent)
 				{
-					var component = componentCanvas.CreateComponent(CanvasComponent[type], 
-					{ 
-						x: x,
-						y: y
-					});
+					if(!CanvasComponent.hasOwnProperty(type))
+						continue;
 
-					y += component._getBoundingBox().h + 50;
+					// Meta component, skip
+					if(CanvasComponent[type] >= 1000)
+						continue;
+					if(CanvasComponent[type] === CanvasComponent.RADIO)
+					{
+						var component = componentCanvas.CreateComponent(CanvasComponent[type], 
+						{ 
+							x: x,
+							y: y
+						});
 
-					var component = componentCanvas.CreateComponent(CanvasComponent[type], 
-					{ 
-						x: x,
-						y: y
-					});
+						y += component._getBoundingBox().h + 50;
 
-					y += component._getBoundingBox().h + 50;
+						var component = componentCanvas.CreateComponent(CanvasComponent[type], 
+						{ 
+							x: x,
+							y: y
+						});
 
-					var component = componentCanvas.CreateComponent(CanvasComponent[type], 
-					{ 
-						x: x,
-						y: y
-					});
+						y += component._getBoundingBox().h + 50;
 
-					component.SetGroup(1);
+						var component = componentCanvas.CreateComponent(CanvasComponent[type], 
+						{ 
+							x: x,
+							y: y
+						});
 
-					y += component._getBoundingBox().h + 50;
+						component.SetGroup(1);
+
+						y += component._getBoundingBox().h + 50;
+					}
+					else
+					{
+						var component = componentCanvas.CreateComponent(CanvasComponent[type], 
+						{ 
+							x: x,
+							y: y
+						});
+
+						if(CanvasComponent[type] === CanvasComponent.BUTTON)
+						{
+							component.SetText('Test Button 1');
+						}
+						else if(CanvasComponent[type] === CanvasComponent.LABEL)
+						{
+							component.SetText('Test Label 1');
+						}
+						else if(CanvasComponent[type] === CanvasComponent.TEXT_INPUT)
+						{
+							component.SetValue('Test Input 1');
+						}
+
+						y += component._getBoundingBox().h + 50;
+					}
 				}
-				else
+			}
+
+			function StressTest(type, n)
+			{
+				for(var i = 0; i < n; i++)
 				{
-					var component = componentCanvas.CreateComponent(CanvasComponent[type], 
+					var component = componentCanvas.CreateComponent(type, 
 					{ 
-						x: x,
-						y: y
+						x: Math.floor(Math.random() * 1000) + 15,
+						y: Math.floor(Math.random() * 900) + 15
 					});
 
-					if(CanvasComponent[type] === CanvasComponent.BUTTON)
+					if(type === CanvasComponent.BUTTON)
 					{
 						component.SetText('Test Button 1');
 					}
-					else if(CanvasComponent[type] === CanvasComponent.LABEL)
+					else if(type === CanvasComponent.LABEL)
 					{
 						component.SetText('Test Label 1');
 					}
-					else if(CanvasComponent[type] === CanvasComponent.TEXT_INPUT)
+					else if(type === CanvasComponent.TEXT_INPUT)
 					{
 						component.SetValue('Test Input 1');
 					}
-
-					y += component._getBoundingBox().h + 50;
+					else if(type === CanvasComponent.RADIO)
+					{
+						component.SetGroup(1);
+					}
 				}
 			}
 		</script>
