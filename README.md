@@ -48,6 +48,10 @@ Aiming for easy extendability and ease-of-use.
 - [x] Mouse event: mousemove
 - [ ] Mouse event: scroll
 
+## Todo 2
+
+- [ ] Implement component z-indexing or layers. Draw components in the right order.
+
 ## Project related
 
 - [x] Minify everything
