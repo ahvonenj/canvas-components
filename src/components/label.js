@@ -21,7 +21,23 @@ class CCLabel extends Component
 			fontColor: '#000',
 			fontFamily: 'Arial',
 
-			backgroundColor: '#FFF'
+			backgroundColor: '#FFF',
+
+			padding:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			},
+
+			margin:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			}
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.LABEL);
@@ -35,9 +51,9 @@ class CCLabel extends Component
 	}
 
 	// Component update method
-	Update(dt)
+	Update(dt, mouseState)
 	{
-		
+		super.Update(dt, mouseState);
 	}
 
 	// Component draw method
@@ -52,6 +68,8 @@ class CCLabel extends Component
 		this.ctx.beginPath();
 		this.ctx.fillText(this.textContent, this.options.x, this.options.y);
 		this.ctx.closePath();
+
+		super.Draw();
 	}
 
 	// Default component event logic

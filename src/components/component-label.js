@@ -14,7 +14,23 @@ class ComponentLabel extends Component
 
 			fontSize: 12,
 			fontColor: '#000',
-			fontFamily: 'Arial'
+			fontFamily: 'Arial',
+
+			padding:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			},
+
+			margin:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			}
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.COMPONENT_LABEL);
@@ -39,9 +55,11 @@ class ComponentLabel extends Component
 	}
 
 	// Component update method
-	Update(dt)
+	Update(dt, mouseState, parentOptions)
 	{
-		
+		//super.Update(dt, mouseState);
+		this.options.x = parentOptions.x + (parentOptions.width / 2),
+		this.options.y = parentOptions.y + (parentOptions.height / 2)
 	}
 
 	// Component draw method
@@ -56,5 +74,7 @@ class ComponentLabel extends Component
 		this.ctx.beginPath();
 		this.ctx.fillText(this.textContent, this.options.x, this.options.y);
 		this.ctx.closePath();
+
+		super.Draw();
 	}
 }

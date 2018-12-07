@@ -37,5 +37,8 @@
     "gulp-rename": "^1.4.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-watch": "^5.0.1"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1"
   }
 }

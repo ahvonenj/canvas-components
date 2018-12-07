@@ -4,6 +4,32 @@ class CanvasComponentCollection
 	constructor()
 	{
 		this.collection = {};
+		this.orderedCollection = [];
+	}
+
+	_addOrderedComponent(component)
+	{
+		this.orderedCollection.push(component);
+
+		this.orderedCollection.sort(function(componentA, componentB)
+		{
+			if(componentA.options.z < componentB.options.z)
+				return -1;
+
+			if(componentA.options.z > componentB.options.z)
+				return 1;
+
+			return 0;
+		});
+	}
+
+	_removeOrderedComponent(component)
+	{
+		for(var i = 0; i < this.orderedCollection.length; i++)
+		{
+			if(this.orderedCollection[i].id === component.id)
+				this.orderedCollection.splice(i, 1);
+		}
 	}
 	
 	// Add component to the collection
@@ -18,6 +44,7 @@ class CanvasComponentCollection
 		if(typeof this.collection[component.id] === 'undefined')
 		{
 			this.collection[component.id] = component;
+			this._addOrderedComponent(component)
 			return true;
 		}
 		else
@@ -37,6 +64,7 @@ class CanvasComponentCollection
 		{
 			this.collection[component.id].Destroy();
 			delete this.collection[component.id];
+			this._removeOrderedComponent(component);
 
 			return true;
 		}
@@ -118,6 +146,11 @@ class CanvasComponentCollection
 	GetComponents()
 	{
 		return Object.values(this.collection);
+	}
+
+	GetComponentsOfType(componentType)
+	{
+		return Object.values(this.collection).filter(component => component.ComponentType === componentType);
 	}
 }
 

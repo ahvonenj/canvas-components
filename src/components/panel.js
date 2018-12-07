@@ -8,8 +8,8 @@ class CCPanel extends Component
 	{
 		options = Object.assign(
 		{ 
-			width: 150, 
-			height: 150,
+			width: 300, 
+			height: 350,
 			x: 0,
 			y: 0,
 			z: 0,
@@ -20,7 +20,23 @@ class CCPanel extends Component
 			fontSize: 8,
 			fontColor: '#000',
 
-			backgroundColor: null
+			backgroundColor: null,
+
+			padding:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			},
+
+			margin:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			}
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.PANEL);
@@ -43,9 +59,9 @@ class CCPanel extends Component
 	}
 
 	// Component update method
-	Update(dt)
+	Update(dt, mouseState)
 	{
-		
+		super.Update(dt, mouseState);
 	}
 
 	// Component draw method
@@ -67,6 +83,13 @@ class CCPanel extends Component
 		this.ctx.closePath();
 		this.ctx.fill();
 		this.ctx.stroke();
+
+		// This might work later for overflow / scrolling
+		//this.ctx.save();
+		//this.ctx.clip();
+		//this.ctx.restore();
+
+		super.Draw();
 	}
 
 	// Default component event logic

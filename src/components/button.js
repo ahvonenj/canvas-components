@@ -12,12 +12,28 @@ class CCButton extends Component
 			height: 28,
 			x: 0,
 			y: 0,
-			z: 0,
+			z: 1,
 
 			borderWidth: 2,
 			borderColor: '#000',
 
-			backgroundColor: null
+			backgroundColor: null,
+
+			padding:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			},
+
+			margin:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			}
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.BUTTON);
@@ -59,9 +75,10 @@ class CCButton extends Component
 	}
 
 	// Component update method
-	Update(dt)
+	Update(dt, mouseState)
 	{
-		this._componentLabel.Update(dt);
+		this._componentLabel.Update(dt, mouseState, this.options);
+		super.Update(dt, mouseState);
 	}
 
 	// Component draw method
@@ -85,6 +102,7 @@ class CCButton extends Component
 		this.ctx.stroke();
 
 		this._componentLabel.Draw();
+		super.Draw();
 	}
 
 	// Default component event logic

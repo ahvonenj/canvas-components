@@ -17,7 +17,23 @@ class CCTextInput extends Component
 			borderWidth: 2,
 			borderColor: '#000',
 
-			backgroundColor: '#FFF'
+			backgroundColor: '#FFF',
+
+			padding:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 5
+			},
+
+			margin:
+			{
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0
+			}
 		}, options);
 
 		super(options, ctx, canvas, CanvasComponent.TEXT_INPUT);
@@ -42,9 +58,10 @@ class CCTextInput extends Component
 	}
 
 	// Component update method
-	Update(dt)
+	Update(dt, mouseState)
 	{
-		this._componentText.Update(dt);
+		this._componentText.Update(dt, mouseState, this.options);
+		super.Update(dt, mouseState);
 	}
 
 	// Component draw method
@@ -67,7 +84,8 @@ class CCTextInput extends Component
 		this.ctx.fill();
 		this.ctx.stroke();
 
-		this._componentText.Draw();
+		this._componentText.Draw(this.options);
+		super.Draw();
 	}
 
 	// Default component event logic
