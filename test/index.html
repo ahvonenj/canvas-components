@@ -45,6 +45,7 @@
 					// Meta component, skip
 					if(CanvasComponent[type] >= 1000)
 						continue;
+
 					if(CanvasComponent[type] === CanvasComponent.RADIO)
 					{
 						var component = componentCanvas.CreateComponent(CanvasComponent[type], 
@@ -72,6 +73,40 @@
 						component.SetGroup(1);
 
 						y += component._getBoundingBox().h + 50;
+					}
+					else if(CanvasComponent[type] === CanvasComponent.PANEL)
+					{
+						var component = componentCanvas.CreateComponent(CanvasComponent[type], 
+						{ 
+							x: x,
+							y: y
+						});
+
+						var subComponent1 = componentCanvas.BuildComponent(CanvasComponent.LABEL, 
+						{ 
+							x: 25,
+							y: 25
+						});
+
+						var subComponent2 = componentCanvas.BuildComponent(CanvasComponent.TEXT_INPUT, 
+						{ 
+							x: 25,
+							y: 50
+						});
+
+						var subComponent3 = componentCanvas.BuildComponent(CanvasComponent.BUTTON, 
+						{ 
+							x: 25,
+							y: 100
+						});
+
+						subComponent1.SetText('Test Label A');
+						subComponent2.SetValue('Test Input B');
+						subComponent3.SetText('Test Button C');
+
+						component.AttachComponent(subComponent1);
+						component.AttachComponent(subComponent2);
+						component.AttachComponent(subComponent3);
 					}
 					else
 					{

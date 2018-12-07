@@ -79,7 +79,7 @@ class ComponentCanvas
 	}
 
 	// Main component creation method
-	CreateComponent(componentType, options)
+	CreateComponent(componentType, options, addToCollection = true)
 	{
 		var component = null;
 
@@ -129,8 +129,21 @@ class ComponentCanvas
 				break;
 		}
 
-		// Returns the component or false
-		return this.AddComponent(component);
+		if(addToCollection)
+		{
+			// Returns the component or false
+			return this.AddComponent(component);
+		}
+		else
+		{
+			return component;
+		}
+	}
+
+	// Same as CreateComponent, but does not add it to any collection
+	BuildComponent(componentType, options)
+	{
+		return this.CreateComponent(componentType, options, false);
 	}
 
 	GetContext()

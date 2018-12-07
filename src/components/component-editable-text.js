@@ -19,10 +19,6 @@ class ComponentEditableText extends Component
 
 		super(options, ctx, canvas, CanvasComponent.COMPONENT_EDITABLE_TEXT);
 
-		/*if(CCUtil.IsUndefinedNullOrEmpty(parentComponent))
-			CCUtil.Log(`Parent component could not be inherited for ComponentEditableText#${this.id}`);
-
-		this.parentComponent = parentComponent;*/
 		this.value = '';
 	}
 
@@ -58,7 +54,11 @@ class ComponentEditableText extends Component
 		this.ctx.font = `${this.options.fontSize}px ${this.options.fontFamily}`;
 
 		this.ctx.beginPath();
-		this.ctx.fillText(this.value, this.options.x + parentOptions.padding.left, this.options.y);
+		this.ctx.fillText(
+			this.value, 
+			this.relativeContext.x + this.options.x + parentOptions.padding.left, 
+			this.relativeContext.y + this.options.y
+		);
 		this.ctx.closePath();
 
 		super.Draw();

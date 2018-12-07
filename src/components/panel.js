@@ -56,11 +56,31 @@ class CCPanel extends Component
 
 			this.options.backgroundColor = gradient;
 		}
+
+		this.componentCollection = new CanvasComponentCollection();
+	}
+
+	AttachComponent(component)
+	{
+		if(this.componentCollection.AddComponent(component))
+			return component;
+		else
+			return null;
+	}
+
+	DetachComponent(component)
+	{
+		return this.componentCollection.RemoveComponent(component);
 	}
 
 	// Component update method
 	Update(dt, mouseState)
 	{
+		for(var i = 0; i < this.componentCollection.orderedCollection.length; i++)
+		{
+			this.componentCollection.orderedCollection[i].Update();
+		}
+
 		super.Update(dt, mouseState);
 	}
 
@@ -74,8 +94,8 @@ class CCPanel extends Component
 		this.ctx.beginPath();
 
 		this.ctx.rect(
-			this.options.x, 
-			this.options.y, 
+			this.relativeContext.x + this.options.x, 
+			this.relativeContext.y + this.options.y, 
 			this.options.width, 
 			this.options.height
 		);
@@ -85,9 +105,23 @@ class CCPanel extends Component
 		this.ctx.stroke();
 
 		// This might work later for overflow / scrolling
-		//this.ctx.save();
-		//this.ctx.clip();
-		//this.ctx.restore();
+		this.ctx.save();
+		this.ctx.clip();
+
+		for(var i = 0; i < this.componentCollection.orderedCollection.length; i++)
+		{
+			this.componentCollection.orderedCollection[i].SetRelativeContext(
+			{
+				x: this.options.x,
+				y: this.options.y
+			});
+
+			this.componentCollection.orderedCollection[i].Draw();
+
+			this.componentCollection.orderedCollection[i].RestoreRelativeContext();
+		}
+
+		this.ctx.restore();
 
 		super.Draw();
 	}

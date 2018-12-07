@@ -74,8 +74,8 @@ class CCTextInput extends Component
 		this.ctx.beginPath();
 
 		this.ctx.rect(
-			this.options.x, 
-			this.options.y, 
+			this.relativeContext.x + this.options.x, 
+			this.relativeContext.y + this.options.y, 
 			this.options.width, 
 			this.options.height
 		);
@@ -84,7 +84,15 @@ class CCTextInput extends Component
 		this.ctx.fill();
 		this.ctx.stroke();
 
+		this._componentText.SetRelativeContext(
+		{
+			x: this.relativeContext.x,
+			y: this.relativeContext.y
+		});
+
 		this._componentText.Draw(this.options);
+
+		this._componentText.RestoreRelativeContext();
 		super.Draw();
 	}
 

@@ -91,8 +91,8 @@ class CCButton extends Component
 		this.ctx.beginPath();
 
 		this.ctx.rect(
-			this.options.x, 
-			this.options.y, 
+			this.relativeContext.x + this.options.x, 
+			this.relativeContext.y + this.options.y, 
 			this.options.width, 
 			this.options.height
 		);
@@ -101,7 +101,16 @@ class CCButton extends Component
 		this.ctx.fill();
 		this.ctx.stroke();
 
+		this._componentLabel.SetRelativeContext(
+		{
+			x: this.relativeContext.x,
+			y: this.relativeContext.y
+		});
+
 		this._componentLabel.Draw();
+
+		this._componentLabel.RestoreRelativeContext();
+
 		super.Draw();
 	}
 

@@ -87,8 +87,8 @@ class CCCheckbox extends Component
 		this.ctx.beginPath();
 
 		this.ctx.rect(
-			this.options.x, 
-			this.options.y, 
+			this.relativeContext.x + this.options.x, 
+			this.relativeContext.y + this.options.y, 
 			this.options.width, 
 			this.options.height
 		);

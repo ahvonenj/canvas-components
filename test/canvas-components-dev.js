@@ -268,6 +268,9 @@ class Component
 		else
 			this.isMetaComponent = false;
 
+		this.relativeContext = null;
+		this.RestoreRelativeContext();
+
 		// Events related attributes
 		this.hasFocus = false;
 		this.isMouseOver = false;
@@ -369,6 +372,21 @@ class Component
 	_drawFocus()
 	{
 		
+	}
+
+	SetRelativeContext(relativeContext)
+	{
+		this.relativeContext = relativeContext;
+	}
+
+	RestoreRelativeContext()
+	{
+		this.relativeContext =
+		{
+			x: 0,
+			y: 0,
+			z: 0
+		};
 	}
 
 	// Component draw function
@@ -504,8 +522,8 @@ class CCButton extends Component
 		this.ctx.beginPath();
 
 		this.ctx.rect(
-			this.options.x, 
-			this.options.y, 
+			this.relativeContext.x + this.options.x, 
+			this.relativeContext.y + this.options.y, 
 			this.options.width, 
 			this.options.height
 		);
@@ -514,7 +532,16 @@ class CCButton extends Component
 		this.ctx.fill();
 		this.ctx.stroke();
 
+		this._componentLabel.SetRelativeContext(
+		{
+			x: this.relativeContext.x,
+			y: this.relativeContext.y
+		});
+
 		this._componentLabel.Draw();
+
+		this._componentLabel.RestoreRelativeContext();
+
 		super.Draw();
 	}
 
@@ -626,8 +653,8 @@ class CCCheckbox extends Component
 		this.ctx.beginPath();
 
 		this.ctx.rect(
-			this.options.x, 
-			this.options.y, 
+			this.relativeContext.x + this.options.x, 
+			this.relativeContext.y + this.options.y, 
 			this.options.width, 
 			this.options.height
 		);
@@ -743,11 +770,31 @@ class CCPanel extends Component
 
 			this.options.backgroundColor = gradient;
 		}
+
+		this.componentCollection = new CanvasComponentCollection();
+	}
+
+	AttachComponent(component)
+	{
+		if(this.componentCollection.AddComponent(component))
+			return component;
+		else
+			return null;
+	}
+
+	DetachComponent(component)
+	{
+		return this.componentCollection.RemoveComponent(component);
 	}
 
 	// Component update method
 	Update(dt, mouseState)
 	{
+		for(var i = 0; i < this.componentCollection.orderedCollection.length; i++)
+		{
+			this.componentCollection.orderedCollection[i].Update();
+		}
+
 		super.Update(dt, mouseState);
 	}
 
@@ -761,8 +808,8 @@ class CCPanel extends Component
 		this.ctx.beginPath();
 
 		this.ctx.rect(
-			this.options.x, 
-			this.options.y, 
+			this.relativeContext.x + this.options.x, 
+			this.relativeContext.y + this.options.y, 
 			this.options.width, 
 			this.options.height
 		);
@@ -772,9 +819,23 @@ class CCPanel extends Component
 		this.ctx.stroke();
 
 		// This might work later for overflow / scrolling
-		//this.ctx.save();
-		//this.ctx.clip();
-		//this.ctx.restore();
+		this.ctx.save();
+		this.ctx.clip();
+
+		for(var i = 0; i < this.componentCollection.orderedCollection.length; i++)
+		{
+			this.componentCollection.orderedCollection[i].SetRelativeContext(
+			{
+				x: this.options.x,
+				y: this.options.y
+			});
+
+			this.componentCollection.orderedCollection[i].Draw();
+
+			this.componentCollection.orderedCollection[i].RestoreRelativeContext();
+		}
+
+		this.ctx.restore();
 
 		super.Draw();
 	}
@@ -994,8 +1055,8 @@ class CCTextInput extends Component
 		this.ctx.beginPath();
 
 		this.ctx.rect(
-			this.options.x, 
-			this.options.y, 
+			this.relativeContext.x + this.options.x, 
+			this.relativeContext.y + this.options.y, 
 			this.options.width, 
 			this.options.height
 		);
@@ -1004,7 +1065,15 @@ class CCTextInput extends Component
 		this.ctx.fill();
 		this.ctx.stroke();
 
+		this._componentText.SetRelativeContext(
+		{
+			x: this.relativeContext.x,
+			y: this.relativeContext.y
+		});
+
 		this._componentText.Draw(this.options);
+
+		this._componentText.RestoreRelativeContext();
 		super.Draw();
 	}
 
@@ -1095,7 +1164,11 @@ class CCLabel extends Component
 		this.ctx.font = `${this.options.fontSize}px ${this.options.fontFamily}`;
 
 		this.ctx.beginPath();
-		this.ctx.fillText(this.textContent, this.options.x, this.options.y);
+		this.ctx.fillText(
+			this.textContent, 
+			this.relativeContext.x + this.options.x, 
+			this.relativeContext.y + this.options.y
+		);
 		this.ctx.closePath();
 
 		super.Draw();
@@ -1302,7 +1375,11 @@ class ComponentLabel extends Component
 		this.ctx.font = `${this.options.fontSize}px ${this.options.fontFamily}`;
 
 		this.ctx.beginPath();
-		this.ctx.fillText(this.textContent, this.options.x, this.options.y);
+		this.ctx.fillText(
+			this.textContent, 
+			this.relativeContext.x + this.options.x, 
+			this.relativeContext.y + this.options.y
+		);
 		this.ctx.closePath();
 
 		super.Draw();
@@ -1328,10 +1405,6 @@ class ComponentEditableText extends Component
 
 		super(options, ctx, canvas, CanvasComponent.COMPONENT_EDITABLE_TEXT);
 
-		/*if(CCUtil.IsUndefinedNullOrEmpty(parentComponent))
-			CCUtil.Log(`Parent component could not be inherited for ComponentEditableText#${this.id}`);
-
-		this.parentComponent = parentComponent;*/
 		this.value = '';
 	}
 
@@ -1367,7 +1440,11 @@ class ComponentEditableText extends Component
 		this.ctx.font = `${this.options.fontSize}px ${this.options.fontFamily}`;
 
 		this.ctx.beginPath();
-		this.ctx.fillText(this.value, this.options.x + parentOptions.padding.left, this.options.y);
+		this.ctx.fillText(
+			this.value, 
+			this.relativeContext.x + this.options.x + parentOptions.padding.left, 
+			this.relativeContext.y + this.options.y
+		);
 		this.ctx.closePath();
 
 		super.Draw();
@@ -1453,7 +1530,7 @@ class ComponentCanvas
 	}
 
 	// Main component creation method
-	CreateComponent(componentType, options)
+	CreateComponent(componentType, options, addToCollection = true)
 	{
 		var component = null;
 
@@ -1503,8 +1580,21 @@ class ComponentCanvas
 				break;
 		}
 
-		// Returns the component or false
-		return this.AddComponent(component);
+		if(addToCollection)
+		{
+			// Returns the component or false
+			return this.AddComponent(component);
+		}
+		else
+		{
+			return component;
+		}
+	}
+
+	// Same as CreateComponent, but does not add it to any collection
+	BuildComponent(componentType, options)
+	{
+		return this.CreateComponent(componentType, options, false);
 	}
 
 	GetContext()

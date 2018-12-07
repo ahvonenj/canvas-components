@@ -66,7 +66,11 @@ class CCLabel extends Component
 		this.ctx.font = `${this.options.fontSize}px ${this.options.fontFamily}`;
 
 		this.ctx.beginPath();
-		this.ctx.fillText(this.textContent, this.options.x, this.options.y);
+		this.ctx.fillText(
+			this.textContent, 
+			this.relativeContext.x + this.options.x, 
+			this.relativeContext.y + this.options.y
+		);
 		this.ctx.closePath();
 
 		super.Draw();

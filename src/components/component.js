@@ -20,6 +20,9 @@ class Component
 		else
 			this.isMetaComponent = false;
 
+		this.relativeContext = null;
+		this.RestoreRelativeContext();
+
 		// Events related attributes
 		this.hasFocus = false;
 		this.isMouseOver = false;
@@ -121,6 +124,21 @@ class Component
 	_drawFocus()
 	{
 		
+	}
+
+	SetRelativeContext(relativeContext)
+	{
+		this.relativeContext = relativeContext;
+	}
+
+	RestoreRelativeContext()
+	{
+		this.relativeContext =
+		{
+			x: 0,
+			y: 0,
+			z: 0
+		};
 	}
 
 	// Component draw function
